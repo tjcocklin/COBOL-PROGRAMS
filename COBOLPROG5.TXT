@@ -228,7 +228,7 @@
                             401-WRITE-TO-NEW-MASTER-FILE-1
                        END-PERFORM
 
-      *      MASTER-FILE IS FINISHED, BUT TRANS-FILE IS                 .
+      *      MASTER-FILE IS FINISHED, BUT TRANS-FILE IS                 
       *      STILL BEING READ
                    WHEN TRUE ALSO FALSE
                        PERFORM UNTIL S2-END-OF-FILE
@@ -276,7 +276,7 @@
                       PERFORM 103-READ-OLD-MASTER-FILE
                    END-IF
 
-      * IN CASE OF OUT OF ORDER UNMATCHED                                IN THE TRANS-FILE)
+      * IN CASE OF OUT OF ORDER UNMATCHED                                
       * ( THIS CONDITION DOESN'T OCCUR IN OUR TRANS FILE)
                WHEN TR-STUDENT-ID < OMR-STUDENT-ID
                    PERFORM 405-WRITE-TO-ERROR-REPORT
@@ -383,7 +383,7 @@
       * CALCULATE THE NEW BALANCE.
        400-CALC-NEW-BALANCE.
            MOVE OMR-BALANCE TO AR-BALANCE
-           COMPUTE AR-NEW-BALANCE = AR-BALANCE + AR-DEPOSIT             WAL
+           COMPUTE AR-NEW-BALANCE = AR-BALANCE + AR-DEPOSIT             
            - AR-WITHDRAWAL
            MOVE ZEROES TO AR-BALANCE AR-WITHDRAWAL AR-DEPOSIT
            .
@@ -400,7 +400,7 @@
            .
 
 
-      * MOVE THE OLD-MASTER-FILE TO NEW-MASTER-FILE,                    NCE.
+      * MOVE THE OLD-MASTER-FILE TO NEW-MASTER-FILE,                    
       * BUT UPDATE THE BALANCE.
        402-WRITE-TO-NEW-MASTER-FILE-2.
            MOVE OMR-OLD-MASTER-RECORD TO NMR-NEW-MASTER-RECORD
@@ -411,7 +411,7 @@
            .
 
 
-      *400-LEVEL PROCESS TO MOVE DATA TO RL-REPORT-LINE                  AND PRINT
+      *400-LEVEL PROCESS TO MOVE DATA TO RL-REPORT-LINE                  
       *FOR TRANS-REPORT
        404-WRITE-TO-TRANS-REPORT.
            MOVE OMR-FIRST-NAME TO RL-FIRST-NAME
@@ -425,7 +425,7 @@
            .
 
 
-      *400-LEVEL PROCESS TO MOVE DATA TO EL-ERROR-LINE                   PRINT
+      *400-LEVEL PROCESS TO MOVE DATA TO EL-ERROR-LINE                   
       *ERROR-REPORT
        405-WRITE-TO-ERROR-REPORT.
            MOVE TR-STUDENT-ID TO EL-STUDENT-ID
