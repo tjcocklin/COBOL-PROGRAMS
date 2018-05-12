@@ -1,0 +1,241 @@
+//KC03CDFX JOB 1,COCKLIN,LINES=(5,CANCEL),NOTIFY=KC03CDF,               00010000
+// MSGLEVEL=(2,0),MSGCLASS=A                                            00020000
+//STEP2 EXEC PROC=IGYWCLG,LNGPRFX='IGY420',                             00030000
+// PARM.COBOL='NOX'                                                     00040000
+//SYSIN DD *                                                            00050000
+                                                                        00060000
+       IDENTIFICATION DIVISION.                                         00060100
+       PROGRAM-ID. WREPORT                                              00060200
+       AUTHOR. JEFFREY COCKLIN                                          00060300
+       DATE-WRITTEN.  3-24-18                                           00060400
+       DATE-COMPILED.                                                   00060500
+      *CLASS CSCE 205 SECTION 1 PROGRAM 3.                              00060600
+                                                                        00061000
+       ENVIRONMENT DIVISION.                                            00061100
+       INPUT-OUTPUT SECTION.                                            00061200
+       FILE-CONTROL.                                                    00061300
+           SELECT SURVEY-INPUT                                          00061400
+               ASSIGN TO FILEIN.                                        00061500
+           SELECT WEATHER-RPT                                           00061600
+               ASSIGN TO FILEOUT.                                       00061700
+       DATA DIVISION.                                                   00061800
+       FILE SECTION.                                                    00061900
+       FD SURVEY-INPUT                                                  00062000
+           RECORDING MODE IS F.                                         00062100
+       01 SURVEY-RECORD                  PIC X(55).                     00062200
+       FD WEATHER-RPT                                                   00062300
+           RECORDING MODE IS F.                                         00062400
+       01 RPT-OUTPUT                     PIC X(383).                    00062500
+      *TO BE CALCULATED                                                 00062600
+       WORKING-STORAGE SECTION.                                         00062700
+       01 PROGRAM-CONTROL-SWITCHES                                      00062800
+           05 END-OF-FILE-SWITCH          PIC X(1).                     00062900
+               88 S1-END-OF-FILE      VALUE 'T'.                        00063000
+               88 S1-NOT-END-OF-FILE  VALUE 'F'.                        00063100
+           05 FIRST-RECORD-SWITCH         PIC X(1).                     00063200
+               88 S2-FIRST-RECORD     VALUE 'T'.                        00063300
+               88 S2-NOT-FIRST-RECORD VALUE 'F'.                        00063400
+       01 WS-DATE                                                       00063500
+           05 WS-CDATE                    PIC X(20).                    00063600
+       01 ARITHMETIC-WORKING-STORAGE.                                   00063700
+           05 AR-TOTAL-PRECIP-ACUMULATOR  PIC 9(4).                     00063800
+           05 AR-STATE-ACCUMULATOR        PIC 9(4).                     00063900
+           05 AR-STATE-AVG                PIC 9(4).                     00064000
+           05 AR-COUNTY-ACUMULATOR        PIC 9(4).                     00065000
+           05 AR-COUNTY-COUNTER           PIC 9(2).                     00066000
+           05 AR-COUNTY-AVG               PIC 9(4).                     00067000
+           05 AR-CITY-COUNTER             PIC 9(2).                     00068000
+           05 AR-CITY-ACUMULATOR          PIC 9(4).                     00069000
+       01 REPORT-CONTROLS                                               00070000
+           05 RC-CURRENT-STATE            PIC X(2).                     00080000
+           05 RC-CURRENT-COUNTY           PIC X(20).                    00090000
+           05 RC-LINE-SPACE-1             PIC 9(2).                     00100000
+           05 RC-LINE-SPACE-2             PIC 9(2).                     00110000
+           05 RC-LINE-SPACE-3             PIC 9(2).                     00120000
+           05 RC-LINE-COUNT               PIC 9(2).                     00130000
+           05 RC-PAGE-COUNT               PIC 9(2).                     00140000
+      * NEW PAGE BEFORE 40 LINES                                        00150000
+        01 SR-SURVEY-RECORD                                             00160000
+           05 SR-STATE                    PIC X(2).                     00170000
+           05 SR-COUNTY                   PIC X(20).                    00180000
+           05 SR-CITY                     PIC X(21).                    00190000
+           05 SR-RAINFALL                 PIC 9(3).                     00200000
+           05 SR-SNOWFALL                 PIC 9(3).                     00210000
+           05 SR-HAIL                     PIC 9(3).                     00220000
+           05 SR-SLEET                    PIC 9(3).                     00230000
+      * TOTAL 55 (NOT PART OF REPORT COUNT!)                            00240000
+        01 HEADING-L1                                                   00250000
+           05 FILLER                      PIC X(11) VALUE SPACES.       00260000
+           05 PIC X(21) VALUE 'WEATHER SURVEY REPORT'.                  00270000
+      * TOTAL 32                                                        00280000
+        01 HEADING-L2                                                   00290000
+           05 FILLER                      PIC X(32) VALUE SPACES.       00300000
+           05 HL2-MONTH                   PIC 9(2).                     00310000
+           05 HL2-SEPARATOR1              PIC X(1) VALUE '/'.           00320000
+           05 HL2-DAY                     PIC 9(2).                     00330000
+           05 HL2-SEPARATOR2              PIC X(1) VALUE '/'.           00340000
+           05 HL2-YEAR                    PIC 9(4).                     00350000
+      * TOTAL 42                                                        00360000
+        01 HEADING-L3                                                   00370000
+           05 FILLER                      PIC X(32) VALUE SPACES.       00380000
+           05 PIC X(6) VALUE 'PAGE: '.                                  00390000
+           05 HL3-PAGE-NUM                PIC 9(2).                     00400000
+      * TOTAL 40                                                        00410000
+        01 HEADING-L4                                                   00420000
+           05 FILLER                      PIC X(11) VALUE SPACES.       00430000
+           05 PIC X(7) VALUE 'STATE: '.                                 00440000
+           05 HL4-STATE                   PIC X(2).                     00450000
+      * TOTAL 20                                                        00460000
+        01 HEADING-L5                                                   00470000
+           05 PIC X(8) VALUE 'COUNTY: '.                                00480000
+           05 HL5-COUNTY                  PIC X(20).                    00490000
+      * TOTAL 28                                                        00500000
+        01 HEADING-L6                                                   00510000
+           05 PIC X(4) VALUE'CITY'.                                     00520000
+           05 FILLER                      PIC X(18) VALUE SPACES.       00530000
+           05 PIC X(8) VALUE'RAINFALL'.                                 00540000
+           05 FILLER                      PIC X(1) VALUE SPACES.        00550000
+           05 PIC X(8) VALUE'SNOWFALL'.                                 00560000
+           05 FILLER                      PIC X(1) VALUE SPACES.        00570000
+           05 PIC X(4) VALUE 'HAIL'.                                    00580000
+           05 FILLER                      PIC X(1) VALUE SPACES.        00590000
+           05 PIC X(5) VALUE 'SLEET'.                                   00600000
+           05 FILLER                      PIC X(1)  VALUE SPACES.       00610000
+           05 PIC X(5) VALUE 'TOTAL'.                                   00620000
+      * TOTAL 56                                                        00630000
+        01 DETAIL-RPT-OUTPUT                                            00640000
+           05 DRO-CITY                    PIC X(20).                    00650000
+           05 FILLER                      PIC X(1) VALUE SPACES.        00660000
+           05 DRO-RAINFALL                PIC 9(3).                     00670000
+           05 FILLER                      PIC X(6) VALUE SPACES.        00680000
+           05 DRO-SNOWFALL                PIC 9(3).                     00690000
+           05 FILLER                      PIC X(6) VALUE SPACES.        00700000
+           05 DRO-HAIL                    PIC 9(3).                     00710000
+           05 FILLER                      PIC X(6) VALUE SPACES.        00720000
+           05 DRO-SLEET                   PIC 9(3).                     00730000
+           05 FILLER                      PIC X(3) VALUE SPACES.        00740000
+           05 DRO-TOTAL                   PIC 9(4).                     00750000
+      * TOTAL 58                                                        00760000
+        01 TOTAL-L1                                                     00770000
+           05 FILLER                      PIC X(3)VALUE SPACES.         00780000
+           05 PIC X(14) VALUE 'COUNTY TOTAL: '.                         00790000
+           05 TL1-COUNTY-TOTAL            PIC 9(4).                     00800000
+      * TOTAL 21                                                        00810000
+        01 TOTAL-L2                                                     00820000
+           05 FILLER                      PIC X(3) VALUE SPACES.        00830000
+           05 PIC X(19) VALUE 'AVG COUNTY PRECIP: '.                    00840000
+           05 TL2-COUNTY-AVG              PIC 9(4).                     00850000
+      * TOTAL 26                                                        00860000
+        01 TOTAL-L3                                                     00870000
+           05 FILLER                      PIC X(11) VALUE SPACES        00880000
+           05 PIC X(18) VALUE 'AVG STATE PRECIP: '.                     00890000
+           05 TL3-STATE-AVG               PIC 9(4).                     00900000
+      * TOTAL 33                                                        00910000
+        01 TOTAL-L4                                                     00920000
+           05 PIC X(23) VALUE 'TOTAL RECORDED PRECIP: '                 00930000
+           05 TL4-TOTAL-REC-PRECIP        PIC 9(4).                     00940000
+      * TOTAL 27                                                        00950000
+       PROCEDURE DIVISION.                                              00960000
+       100-MAIN.                                                        00970000
+           OPEN INPUT SURVEY-INPUT                                      00980000
+                OUTPUT WEATHER-RPT                                      00990000
+           PERFORM 101-INIT                                             01000000
+                                                                        01010000
+           PERFORM UNTIL S1-END-OF-FILE                                 01020000
+               READ SURVEY-INPUT                                        01030000
+                   INTO SR-SURVEY-RECORD                                01040000
+               AT END                                                   01050000
+                   SET S1-END-OF-FILE TO TRUE                           01060000
+               NOT AT END                                               01070000
+                   PERFORM 200-DRIVER                                   01080000
+               END-READ                                                 01090000
+           END-PERFORM                                                  01100000
+           PERFORM 405-TOTAL-PRECIPITATION                              01110000
+           CLOSE SURVEY-INPUT                                           01120000
+                 WEATHER-RPT                                            01130000
+           STOP RUN                                                     01140000
+           .                                                            01150000
+                                                                        01160000
+       101-INIT.                                                        01170000
+           MOVE FUNCTION CURRENT-DATE TO WS-CDATE                       01180000
+           MOVE WS-CDATE(5:2) TO HL2-MONTH                              01190000
+           MOVE WS-CDATE(7:2) TO HL2-DAY                                01200000
+           MOVE WS-CDATE(1:4) TO HL2-YEAR                               01210000
+                                                                        01220000
+           SET S1-END-OF-FILE TO TRUE                                   01240000
+           SET S2-FIRST-RECORD TO TRUE                                  01250000
+                                                                        01260000
+           MOVE 1 TO RC-LINE-SPACE-1                                    01270000
+           MOVE 2 TO RC-LINE-SPACE-2                                    01280000
+           MOVE 3 TO RC-LINE-SPACE-3                                    01290000
+                                                                        01300000
+           MOVE 1 TO RC-PAGE-COUNT                                      01310000
+           INITIALIZE ARITHMETIC-WORKING-STORAGE                        01320000
+                      RC-LINE-COUNT                                     01330000
+           .                                                            01340000
+                                                                        01350000
+       200-DRIVER.                                                      01360000
+           EVALUATE  TRUE                                               01370000
+               WHEN S2-FIRST-RECORD                                     01380000
+                     MOVE SR-STATE TO RC-CURRENT-STATE                  01390000
+                     MOVE SR-COUNTY TO RC-CURRENT-COUNTY                01400000
+                                                                        01410000
+                     PERFORM 203-MAJOR-CONTROL-BREA                     01420000
+                                                                        01430000
+      * MINOR CONTROL BREAK OCCURS                                      01440000
+                WHEN S2-NOT-FIRST-RECORD AND SR-COUNTY IS               01450000
+                     NOT EQUAL TO RC-CURRENT-COUNTY                     01460000
+                                                                        01470000
+                      MOVE SR-COUNTY TO RC-CURRENT-COUNTY               01480000
+                                                                        01490000
+                      PERFORM MINOR-CONTROL-BREAK                       01500000
+      * NORMAL OPERATION                                                01510000
+                WHEN SR-STATE IS EQUAL TO RC-CURRENT-STATE AND          01520000
+                     SR-COUNTY IS EQUAL TO RC-CURRENT-COUNTY            01530000
+                                                                        01540000
+                     PERFORM 400-DETAIL-LINE-PROCESS                    01550000
+                                                                        01560000
+            END-EVALUATE                                                01570000
+            .                                                           01580000
+                                                                        01590000
+       201-FIRST-RECORD-PROCESS.                                        01600000
+           ADD 1 TO AR-COUNTY-COUNTER                                   01610000
+           PERFORM 305-PRINT-ALL-HEADINGS                               01620000
+           PERFORM 400-DETAIL-LINE-PROCESS                              01630000
+           .                                                            01640000
+                                                                        01650000
+       202-MAJOR-CB-RECORD-PROCESS.                                     01660000
+           PERFORM 303-PRINT-STATE-HEADING                              01670000
+           PERFORM 304-PRINT-COUNTY-HEADING                             01680000
+           PERFORM 305-PRINT-DETAIL-HEADING                             01690000
+           PERFORM 400-DETAIL-LINE-PROCESS                              01700000
+           .                                                            01710000
+                                                                        01720000
+       203-MAJOR-CONTROL-BREAK.                                         01730000
+           ADD AR-COUNTY-ACUMULATOR TO AR-STATE-ACCUMULATOR             01740000
+           PERFORM 402-PRINT-COUNTY-TOTAL-LINE                          01750000
+           PERFORM 403-COUNTY-LINE-AVG-PROCESS                          01760000
+           PERFORM 404-STATE-LINE-AVG-PROCESS                           01770000
+           MOVE ZEROS TO AR-COUNTY-ACUMULATOR                           01780000
+                AR-STATE-ACCUMULATOR AR-CITY-COUNTER                    01790000
+           PERFORM 202-MAJOR-CB-RECORD-PROCESS                          01800000
+           .                                                            01810000
+                                                                        01811000
+       204-MINOR-CB-RECORD-PROCESS.                                     01820000
+           PERFORM 304-PRINT-COUNTY-HEADING                             01830000
+           PERFORM 305-PRINT-DATE-HEADING                               01840000
+           PERFORM 400-DETAIL-LINE-PROCESS                              01850000
+          .                                                             01860000
+                                                                        01861000
+       205-MINOR-CONTROL-BREAK.                                         01870000
+           ADD AR-COUNTY-ACUMULATOR TO AR-STATE-ACCUMULATOR             01880000
+           ADD 1 TO AR-COUNTY-COUNTER                                   01890000
+           PERFORM 402-PRINT-COUNTY-TOTAL-LINE                          01900000
+           PERFORM 403-COUNTY-LINE-AVG-PROCESS                          01910000
+           MOVE ZEROS TO AR-COUNTY-ACUMULATOR AR-CITY-COUNTER           01920000
+           PERFORM 204-MINOR-204-CB-RECORD-PROCESS                      01930000
+           .                                                            01940000
+       300-PRINT-REPORT-HEADING                                         01950000
+           MOVE HEADING-L1 T0 RPT-OUTPUT                                01960000
+           .
+

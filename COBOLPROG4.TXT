@@ -1,0 +1,267 @@
+//KC03CDFX JOB 1,COCKLIN,LINES=(5,CANCEL),NOTIFY=KC03CDF,
+// MSGLEVEL=(2,0),MSGCLASS=A
+//STEP2 EXEC PROC=IGYWCLG,LNGPRFX='IGY420',
+// PARM.COBOL='NOX'
+//SYSIN DD *
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. SREPORT
+       AUTHOR. JEFFREY COCKLIN
+       DATE-WRITTEN.  4-10-18
+       DATE-COMPILED.
+      *CLASS CSCE 205 SECTION 1 PROGRAM 4.
+
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT INPUT-LIST
+                ASSIGN TO FILEIN.
+           SELECT ANIMAL-ROSTER
+                ASSIGN TO FILEOUT.
+
+        DATA DIVISION.
+        FILE SECTION.
+        FD INPUT-LIST
+           RECORDING MODE F.
+        01 INPUT-RECORD         PIC X(33).
+        FD ANIMAL-ROSTER
+           RECORDING MODE F.
+        01 OUTPUT-RPT           PIC X(337).
+
+        WORKING-STORAGE SECTION.
+        01 PROGRAM-CONTROL-SWITCHES.
+           05 END-OF-FILE-SWITCH       PIC X(1).
+              88 S1-END-OF-FILE      VALUE 'T'.
+              88 S1-NOT-END-OF-FILE  VALUE 'F'.
+        01 WS-DATE.
+           05 WS-CDATE                 PIC X(20).
+        01 ARITHMETIC-WORKING-STORAGE.
+           05 AR-ANIMAL-TOTAL          PIC 9(2).
+        01 REPORT-CONTROLS.
+           05 RC-LINE-SPACE-1           PIC 9(2).
+           05 RC-LINE-SPACE-3           PIC 9(2).
+           05 RC-PAGE-COUNT            PIC 9(2).
+           05 RC-LINE-COUNT            PIC 9(2).
+      * NEW PAGE BEFORE 40 LINES
+        01 IR-INPUT-RECORD.
+           05 IR-PET-NAME              PIC X(11).
+           05 IR-SPECIES               PIC X(13).
+           05 IR-STATUS                PIC X(1).
+           05 IR-DATE                  PIC 9(8).
+      * TOTAL 33
+      * TABLE
+        01 STATUS-DATA.
+           05 PIC X(11) VALUE 'DDISPLACEDN'.
+           05 PIC X(11) VALUE 'SSTRAY    Y'.
+           05 PIC X(11) VALUE 'AADOPTED  N'.
+           05 PIC X(11) VALUE 'RRESCUED  Y'.
+        01 STATUS-TABLE REDEFINES STATUS-DATA.
+           05 STATUS-ENTRY OCCURS 4 TIMES INDEXED BY SE-IDX.
+              10 SE-STATUS             PIC X(1).
+              10 SE-DESCRIPTION        PIC X(9).
+              10 SE-ADOPTABLE          PIC X(1).
+      * TOTAL 11
+      * REPORT COUNT BEGINS
+        01 HEADING-L1.
+           05 FILLER                   PIC X(24) VALUE SPACES.
+           05 PIC X(23) VALUE 'GAMECOCK ANIMAL SHELTER'.
+      * TOTAL 47
+        01 HEADING-L2.
+           05 FILLER                   PIC X(57) VALUE SPACES.
+           05 HL2-MONTH                PIC 9(2).
+           05 HL2-SPEARATOR1           PIC X(1) VALUE '/'.
+           05 HL2-DAY                  PIC 9(2).
+           05 HL2-SPEARATOR2           PIC X(1) VALUE '/'.
+           05 HL2-YEAR                 PIC 9(4).
+      * TOTAL 67
+        01 HEADING-L3.
+           05 FILLER                   PIC X(57) VALUE SPACES.
+           05 PIC X(6) VALUE 'PAGE: '.
+           05 HL3-PAGE-NUM             PIC 9(2).
+      * TOTAL 65
+        01 HEADLING-L4.
+           05 PIC X(8) VALUE 'PET NAME'.
+           05 FILLER                   PIC X(4) VALUE SPACES.
+           05 PIC X(7) VALUE 'SPECIES'.
+           05 FILLER                   PIC X(7) VALUE SPACES.
+           05 PIC X(6) VALUE 'STATUS'.
+           05 FILLER                   PIC X(1) VALUE SPACES.
+           05 PIC X(11) VALUE 'DESCRIPTION'.
+           05 FILLER                   PIC X(1) VALUE SPACES.
+           05 PIC X(9) VALUE 'ADOPTABLE'.
+           05 FILLER                   PIC X(1) VALUE SPACES.
+           05 PIC X(10) VALUE 'ENTRY-DATE'.
+      * TOTAL 65
+        01 DETAIL-LINE.
+           05 DL-PET-NAME              PIC X(11).
+           05 FILLER                   PIC X(1) VALUE SPACES.
+           05 DL-SPECIES               PIC X(13).
+           05 FILLER                   PIC X(3) VALUE SPACES.
+           05 DL-STATUS                PIC X(1).
+           05 FILLER                   PIC X(4) VALUE SPACES.
+           05 DL-DESCRIPTION           PIC X(9).
+           05 FILLER                   PIC X(5) VALUE SPACES.
+           05 DL-ADOPTABLE             PIC X(1).
+           05 FILLER                   PIC X(7) VALUE SPACES.
+           05 DL-ENTRY-DATE            PIC 99/99/9999.
+      * TOTAL 65
+        01 TOTAL-LINE.
+           05 PIC X(26) VALUE 'CURRENT SHELTER CAPACITY: '.
+           05 TL-TOTAL-NUMBER          PIC 9(2).
+      * TOTAL 28
+
+
+       PROCEDURE DIVISION.
+       100-MAIN.
+           OPEN INPUT INPUT-LIST
+                OUTPUT ANIMAL-ROSTER
+           PERFORM 101-INIT
+           PERFORM 306-PRINT-ALL-HEADINGS
+           PERFORM UNTIL S1-END-OF-FILE
+              READ INPUT-LIST
+                  INTO IR-INPUT-RECORD
+              AT END
+                 SET S1-END-OF-FILE TO TRUE
+              NOT AT END
+                   PERFORM 200-DRIVER
+              END-READ
+           END-PERFORM
+           PERFORM 402-TOTAL
+           CLOSE INPUT-LIST
+                 ANIMAL-ROSTER
+           STOP RUN
+           .
+
+       101-INIT.
+           MOVE FUNCTION CURRENT-DATE TO WS-CDATE
+           MOVE WS-CDATE(5:2) TO HL2-MONTH
+           MOVE WS-CDATE(7:2) TO HL2-DAY
+           MOVE WS-CDATE(1:4) TO HL2-YEAR
+
+           SET S1-NOT-END-OF-FILE TO TRUE
+
+           MOVE 1 TO RC-LINE-SPACE-1
+           MOVE 3 TO RC-LINE-SPACE-3
+           ADD 1 TO RC-PAGE-COUNT
+
+           INITIALIZE ARITHMETIC-WORKING-STORAGE
+                      RC-LINE-COUNT
+           .
+
+       200-DRIVER.
+           PERFORM 400-TABLE-SEARCH
+           PERFORM 401-DETAIL-LINE-PROCESS
+           .
+
+       300-PAGE-PROCESS-1.
+           IF RC-LINE-COUNT >= 40
+              ADD 1 TO RC-PAGE-COUNT
+              MOVE ZERO TO RC-LINE-COUNT
+              WRITE OUTPUT-RPT
+                  BEFORE ADVANCING RC-LINE-SPACE-1
+              MOVE HEADING-L2 TO OUTPUT-RPT
+              WRITE OUTPUT-RPT
+                  BEFORE ADVANCING PAGE
+              ADD 3 TO RC-LINE-COUNT
+              MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+              MOVE HEADING-L3 TO OUTPUT-RPT
+              WRITE OUTPUT-RPT
+                  BEFORE ADVANCING RC-LINE-SPACE-1
+              MOVE HEADLING-L4 TO OUTPUT-RPT
+              WRITE OUTPUT-RPT
+                  BEFORE ADVANCING RC-LINE-SPACE-1
+           ELSE
+              WRITE OUTPUT-RPT
+                  BEFORE ADVANCING RC-LINE-SPACE-1
+           END-IF
+           ADD 1 TO RC-LINE-COUNT
+           .
+
+        301-PAGE-PROCESS-2.
+           IF RC-LINE-COUNT >= 40
+              ADD 1 TO RC-PAGE-COUNT
+              MOVE ZERO TO RC-LINE-COUNT
+              WRITE OUTPUT-RPT
+                  BEFORE ADVANCING RC-LINE-SPACE-1
+              MOVE HEADING-L2 TO OUTPUT-RPT
+              WRITE OUTPUT-RPT
+                  BEFORE ADVANCING PAGE
+              MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+              MOVE HEADING-L3 TO OUTPUT-RPT
+              WRITE OUTPUT-RPT
+                  BEFORE ADVANCING RC-LINE-SPACE-1
+              ADD 4 TO RC-LINE-COUNT
+              MOVE HEADLING-L4 TO OUTPUT-RPT
+              WRITE OUTPUT-RPT
+                  BEFORE ADVANCING RC-LINE-SPACE-1
+           ELSE
+              WRITE OUTPUT-RPT
+                  BEFORE ADVANCING RC-LINE-SPACE-3
+              ADD 3 TO RC-LINE-COUNT
+           END-IF
+           .
+
+        302-PRINT-REPORT-HEADING.
+           MOVE HEADING-L1 TO OUTPUT-RPT
+           PERFORM 300-PAGE-PROCESS-1
+           .
+
+        303-PRINT-DATE.
+           MOVE HEADING-L2 TO OUTPUT-RPT
+           PERFORM 300-PAGE-PROCESS-1
+           .
+
+        304-PRINT-PAGE.
+           MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+           MOVE HEADING-L3 TO OUTPUT-RPT
+           PERFORM 301-PAGE-PROCESS-2
+           .
+
+        305-PRINT-FIELD-HEADING.
+           MOVE HEADLING-L4 TO OUTPUT-RPT
+           PERFORM 300-PAGE-PROCESS-1
+           .
+
+        306-PRINT-ALL-HEADINGS.
+           PERFORM 302-PRINT-REPORT-HEADING
+           PERFORM 303-PRINT-DATE
+           PERFORM 304-PRINT-PAGE
+           PERFORM 305-PRINT-FIELD-HEADING
+           .
+
+       400-TABLE-SEARCH.
+           SET SE-IDX TO 1
+           SEARCH STATUS-ENTRY
+              AT END
+                 MOVE ALL 'X' TO DL-STATUS DL-DESCRIPTION
+                               DL-ADOPTABLE
+              WHEN IR-STATUS EQUAL TO SE-STATUS (SE-IDX)
+                 MOVE SE-STATUS (SE-IDX) TO DL-STATUS
+                 MOVE SE-DESCRIPTION (SE-IDX) TO DL-DESCRIPTION
+                 MOVE SE-ADOPTABLE (SE-IDX) TO DL-ADOPTABLE
+           END-SEARCH
+           .
+
+        401-DETAIL-LINE-PROCESS.
+           MOVE IR-PET-NAME TO DL-PET-NAME
+           MOVE IR-SPECIES TO DL-SPECIES
+           MOVE IR-DATE TO DL-ENTRY-DATE
+           MOVE DETAIL-LINE TO OUTPUT-RPT
+           ADD 1 TO AR-ANIMAL-TOTAL
+           PERFORM 300-PAGE-PROCESS-1
+           .
+
+        402-TOTAL.
+           MOVE AR-ANIMAL-TOTAL TO TL-TOTAL-NUMBER
+           MOVE TOTAL-LINE TO OUTPUT-RPT
+           PERFORM 301-PAGE-PROCESS-2
+           .
+
+
+//LKED.SYSPRINT DD DUMMY
+//* REPLACE THE ? IN THE DSN BELOW WITH YOUR GROUP NUMBER
+//GO.FILEIN DD DSN=KC02580.G3P4.DAT,DISP=SHR
+//GO.FILEOUT DD SYSOUT=A
+//GO.SYSOUT DD SYSOUT=A
+

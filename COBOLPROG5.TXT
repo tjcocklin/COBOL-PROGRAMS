@@ -1,0 +1,449 @@
+//KC03CDFX JOB 1,COCKLIN,LINES=(5,CANCEL),NOTIFY=KC03CDF,
+// MSGLEVEL=(2,0),MSGCLASS=A
+//STEP2 EXEC PROC=IGYWCLG,LNGPRFX='IGY420',
+// PARM.COBOL='NOX'
+//SYSIN DD *
+
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. FREPORT
+       AUTHOR. JEFFREY COCKLIN, THOMAS COX, ROBERT GUNTER
+       DATE-WRITTEN.  4-19-18
+       DATE-COMPILED. 04/13/18.
+      *CLASS CSCE 205 SECTION 1 PROGRAM 5.
+
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT OLD-MASTER-FILE
+               ASSIGN TO FILEIN.
+           SELECT TRANS-FILE
+               ASSIGN TO FILEIN2.
+           SELECT NEW-MASTER-FILE
+               ASSIGN TO FILEOUT.
+           SELECT TRANS-REPORT
+               ASSIGN TO RPTOUT.
+           SELECT ERROR-REPORT
+               ASSIGN TO ERROUT.
+
+       DATA DIVISION.
+       FILE SECTION.
+       FD  OLD-MASTER-FILE
+           RECORDING MODE F.
+       01  OLD-MASTER-RECORD                   PIC X(28).
+       FD  TRANS-FILE
+           RECORDING MODE F.
+       01  TRANS-RECORD                        PIC X(10).
+       FD  NEW-MASTER-FILE
+           RECORDING MODE F.
+       01  NEW-MASTER-RECORD                   PIC X(28).
+       FD  TRANS-REPORT
+           RECORDING MODE F.
+       01  REPORT-LINE                         PIC X(290).
+       FD  ERROR-REPORT
+           RECORDING MODE F.
+       01  ERROR-LINE                          PIC X(234).
+
+       WORKING-STORAGE SECTION.
+       01 PROGRAM-CONTROL-SWITCHES.
+           05 END-OF-FILE-SWITCH-MASTER   PIC X(1).
+              88 S1-END-OF-FILE      VALUE 'T'.
+              88 S1-NOT-END-OF-FILE  VALUE 'F'.
+           05 END-OF-FILE-SWITCH-TRANS   PIC X(1).
+              88 S2-END-OF-FILE      VALUE 'T'.
+              88 S2-NOT-END-OF-FILE  VALUE 'F'.
+
+       01 ARITHMETIC-WORKING-STORAGE.
+           05 AR-WITHDRAWAL        PIC 9(3).
+           05 AR-DEPOSIT           PIC 9(3).
+           05 AR-BALANCE           PIC 9(3).
+           05 AR-NEW-BALANCE       PIC 9(3).
+
+       01 REPORT-CONTROLS.
+           05 RC-LINE-SPACE-1      PIC 9(1).
+           05 RC-LINE-SPACE-2      PIC 9(1).
+           05 RC-LINE-SPACE-3      PIC 9(1).
+           05 RC-PAGE-COUNT        PIC 9(2).
+           05 RC-LINE-COUNT        PIC 9(2).
+
+       01 WORKING-STORAGE-DATE.
+           05 WS-CDATE              PIC  X(20).
+
+       01 OMR-OLD-MASTER-RECORD.
+           05 OMR-FIRST-NAME       PIC X(10).
+           05 OMR-LAST-NAME        PIC X(10).
+           05 OMR-STUDENT-ID       PIC X(5).
+           05 OMR-BALANCE          PIC 9(3).
+      * TOTAL 28
+
+       01 TR-TRANS-RECORD.
+           05 TR-STUDENT-ID        PIC X(5).
+           05 TR-TRANSACTION-TYPE  PIC X(1).
+           05 TR-AMOUNT            PIC 9(3).
+           05 TR-FLAG              PIC X(1).
+      * TOTAL 10
+
+       01 NMR-NEW-MASTER-RECORD.
+           05 NMR-FIRST-NAME       PIC X(10).
+           05 NMR-LAST-NAME        PIC X(10).
+           05 NMR-STUDENT-ID       PIC X(5).
+           05 NMR-BALANCE          PIC 9(3).
+      * TOTAL 28
+
+       01 RL-REPORT-LINE.
+           05 RL-FIRST-NAME       PIC X(10).
+           05 FILLER              PIC X(2) VALUE SPACES.
+           05 RL-LAST-NAME        PIC X(10).
+           05 FILLER              PIC X(2) VALUE SPACES.
+           05 RL-STUDENT-ID       PIC X(5).
+           05 FILLER              PIC X(6) VALUE SPACES.
+           05 RL-BALANCE          PIC $$$9.
+           05 FILLER              PIC X(6) VALUE SPACES.
+           05 RL-TRANSACTION      PIC X(1).
+           05 FILLER              PIC X(7) VALUE SPACES.
+           05 RL-AMOUNT           PIC $$$9.
+      * TOTAL 57
+
+       01 EL-ERROR-LINE.
+           05 VALUE 'NOT FOUND'   PIC X(9).
+           05 FILLER              PIC X(4) VALUE SPACES.
+           05 EL-STUDENT-ID       PIC X(5).
+           05 FILLER              PIC X(8) VALUE SPACES.
+           05 EL-TRANSACTION      PIC X(1).
+           05 FILLER              PIC X(8) VALUE SPACES.
+           05 EL-AMOUNT           PIC $$$9.
+      * TOTAL 39
+
+       01 HEADING-L1.
+           05 FILLER PIC X(14) VALUE SPACES.
+           05 VALUE 'MASTER/TRANSACTION MATCH REPORT'
+                                  PIC X(31).
+      * TOTAL 45
+
+       01 HEADING-L2.
+           05 FILLER             PIC X(57) VALUE SPACES.
+           05 HL2-MONTH          PIC 9(2).
+           05 HL2-SPEARATOR1     PIC X(1) VALUE '/'.
+           05 HL2-DAY            PIC 9(2).
+           05 HL2-SPEARATOR2     PIC X(1) VALUE '/'.
+           05 HL2-YEAR           PIC 9(4).
+      * TOTAL 67
+
+       01 HEADING-L3.
+           05 FILLER             PIC X(57) VALUE SPACES.
+           05 PIC X(6) VALUE 'PAGE: '.
+           05 HL3-PAGE-NUM       PIC 9(2).
+      * TOTAL 65
+
+       01 HEADING-L4.
+           05 VALUE 'FIRST NAME' PIC X(10).
+           05 FILLER             PIC X(1) VALUE SPACES.
+           05 VALUE 'LAST NAME'  PIC X(9).
+           05 FILLER             PIC X(1) VALUE SPACES.
+           05 VALUE 'STUDENT ID' PIC X(10).
+           05 FILLER             PIC X(1) VALUE SPACES.
+           05 VALUE 'BALANCE'    PIC X(7).
+           05 FILLER             PIC X(1) VALUE SPACES.
+           05 VALUE 'TRANSACTION' PIC X(11).
+           05 FILLER             PIC X(1) VALUE SPACES.
+           05 VALUE 'AMOUNT'     PIC X(6).
+      * TOTAL 58 FOR TRANS-REPORT
+
+       01 HEADING-L5.
+           05 FILLER PIC X(11) VALUE SPACES.
+           05 VALUE 'ERROR REPORT' PIC X(12).
+      * TOTAL 23
+
+       01 HEADING-L6.
+           05 VALUE 'ERROR-TYPE' PIC X(10).
+           05 FILLER             PIC X(1) VALUE SPACES.
+           05 VALUE 'STUDENT ID' PIC X(10).
+           05 FILLER             PIC X(1) VALUE SPACES.
+           05 VALUE 'TRANSACTION' PIC X(11).
+           05 FILLER             PIC X(1) VALUE SPACES.
+           05 VALUE 'AMOUNT'     PIC X(6).
+      * TOTAL 40 FOR ERROR REPORT
+
+       PROCEDURE DIVISION.
+       100-MAIN.
+           OPEN INPUT OLD-MASTER-FILE
+                      TRANS-FILE
+
+                OUTPUT NEW-MASTER-FILE
+                       TRANS-REPORT
+                       ERROR-REPORT
+
+           PERFORM 101-INIT
+           PERFORM 200-DRIVER
+
+           CLOSE OLD-MASTER-FILE
+                 TRANS-FILE
+                 NEW-MASTER-FILE
+                 TRANS-REPORT
+                 ERROR-REPORT
+           STOP RUN
+           .
+
+       101-INIT.
+           MOVE FUNCTION CURRENT-DATE TO WS-CDATE
+           MOVE WS-CDATE(5:2) TO HL2-MONTH
+           MOVE WS-CDATE(7:2) TO HL2-DAY
+           MOVE WS-CDATE(1:4) TO HL2-YEAR
+
+           SET S1-NOT-END-OF-FILE TO TRUE
+           SET S2-NOT-END-OF-FILE TO TRUE
+           MOVE 1 TO RC-LINE-SPACE-1
+           MOVE 2 TO RC-LINE-SPACE-2
+           MOVE 3 TO RC-LINE-SPACE-3
+
+           ADD 1 TO RC-PAGE-COUNT
+           MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+
+           INITIALIZE ARITHMETIC-WORKING-STORAGE
+                      RC-LINE-COUNT
+           .
+
+      *100 LEVEL FILE READING PROCESSES.
+
+      * MAIN READING PROCESS.
+       102-READING-FILES.
+           PERFORM 103-READ-OLD-MASTER-FILE
+           PERFORM 104-READ-TRANS-FILE
+
+           PERFORM UNTIL S1-END-OF-FILE AND S2-END-OF-FILE
+
+               EVALUATE S1-END-OF-FILE ALSO S2-END-OF-FILE
+
+      *   BOTH MASTER-FILE AND TRANS-FILE STILL BEING READ.
+                   WHEN FALSE ALSO FALSE
+                       PERFORM 201-MATCHING-PROCESS
+
+      *   MASTER-FILE STILL BEING READ, BUT TRANS-FILE
+      *   IS FINISHED.
+                   WHEN FALSE ALSO TRUE
+                       PERFORM UNTIL S1-END-OF-FILE
+                            PERFORM 103-READ-OLD-MASTER-FILE
+                            PERFORM
+                            401-WRITE-TO-NEW-MASTER-FILE-1
+                       END-PERFORM
+
+      *      MASTER-FILE IS FINISHED, BUT TRANS-FILE IS                 .
+      *      STILL BEING READ
+                   WHEN TRUE ALSO FALSE
+                       PERFORM UNTIL S2-END-OF-FILE
+                           PERFORM 405-WRITE-TO-ERROR-REPORT
+                           PERFORM 104-READ-TRANS-FILE
+                       END-PERFORM
+               END-EVALUATE
+           END-PERFORM
+           .
+
+
+
+      * MASTER FILE READING PROCESS.
+       103-READ-OLD-MASTER-FILE.
+           READ OLD-MASTER-FILE
+                INTO OMR-OLD-MASTER-RECORD
+           AT END
+                SET S1-END-OF-FILE TO TRUE
+           END-READ
+           .
+
+      * TRANSACTION FILE READING PROCESS.
+       104-READ-TRANS-FILE.
+           READ TRANS-FILE
+                INTO TR-TRANS-RECORD
+           AT END
+                SET S2-END-OF-FILE TO TRUE
+           END-READ
+           .
+      * PRIMARY DRIVER FOR THE PROGRAM
+       200-DRIVER.
+           PERFORM 302-PRINT-REPORT-HEADINGS
+           PERFORM 303-PRINT-ERROR-REPORT-HEADING
+           PERFORM 102-READING-FILES
+           .
+
+      * PERFORMS MATCHING PROCESS
+       201-MATCHING-PROCESS.
+           EVALUATE TRUE
+      * NO MORE MATCHES FOUND
+               WHEN TR-STUDENT-ID > OMR-STUDENT-ID
+                   PERFORM 400-CALC-NEW-BALANCE
+                   PERFORM 402-WRITE-TO-NEW-MASTER-FILE-2
+                   IF S1-NOT-END-OF-FILE
+                      PERFORM 103-READ-OLD-MASTER-FILE
+                   END-IF
+
+      * IN CASE OF OUT OF ORDER UNMATCHED                                IN THE TRANS-FILE)
+      * ( THIS CONDITION DOESN'T OCCUR IN OUR TRANS FILE)
+               WHEN TR-STUDENT-ID < OMR-STUDENT-ID
+                   PERFORM 405-WRITE-TO-ERROR-REPORT
+                   IF S1-NOT-END-OF-FILE AND S2-NOT-END-OF-FILE
+                      PERFORM 104-READ-TRANS-FILE
+                   END-IF
+
+      * NORMAL MATCH FOUND CONDITION.
+               WHEN TR-STUDENT-ID = OMR-STUDENT-ID
+                   IF TR-TRANSACTION-TYPE EQUAL 'D'
+                       ADD TR-AMOUNT TO AR-DEPOSIT
+                   ELSE
+                       ADD TR-AMOUNT TO AR-WITHDRAWAL
+                   END-IF
+                   PERFORM 404-WRITE-TO-TRANS-REPORT
+                   IF S2-NOT-END-OF-FILE
+                      PERFORM 104-READ-TRANS-FILE
+                   END-IF
+           END-EVALUATE
+            .
+
+
+      *300 LEVEL PAGE/LINE SPACE HANDLING.
+
+      *300 PAGE HANDLING FOR TRANS-REPORT
+       300-PAGE-PROCESS-1.
+           IF RC-LINE-COUNT >= 50
+              ADD 1 TO RC-PAGE-COUNT
+              MOVE ZERO TO RC-LINE-COUNT
+              WRITE REPORT-LINE
+                   BEFORE ADVANCING RC-LINE-SPACE-1
+              MOVE HEADING-L2 TO REPORT-LINE
+              WRITE REPORT-LINE
+                   BEFORE ADVANCING PAGE
+              ADD 3 TO RC-LINE-COUNT
+              MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+              MOVE HEADING-L3 TO REPORT-LINE
+              WRITE REPORT-LINE
+                   BEFORE ADVANCING RC-LINE-SPACE-1
+              MOVE HEADING-L4 TO REPORT-LINE
+              WRITE REPORT-LINE
+                   BEFORE ADVANCING RC-LINE-SPACE-1
+           ELSE
+              WRITE REPORT-LINE
+                   BEFORE ADVANCING RC-LINE-SPACE-1
+           END-IF
+           ADD 1 TO RC-LINE-COUNT
+           .
+
+      *301 PAGE HANDLING FOR ERROR REPORT EL-ERROR-LINE*
+       301-PAGE-PROCESS-2.
+           IF RC-LINE-COUNT >= 50
+              ADD 1 TO RC-PAGE-COUNT
+              MOVE ZERO TO RC-LINE-COUNT
+              WRITE ERROR-LINE
+                   BEFORE ADVANCING RC-LINE-SPACE-1
+              MOVE HEADING-L2 TO ERROR-LINE
+              WRITE ERROR-LINE
+                   BEFORE ADVANCING PAGE
+              ADD 3 TO RC-LINE-COUNT
+              MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+              MOVE HEADING-L3 TO ERROR-LINE
+              WRITE ERROR-LINE
+                   BEFORE ADVANCING RC-LINE-SPACE-1
+              MOVE HEADING-L6 TO ERROR-LINE
+              WRITE ERROR-LINE
+                   BEFORE ADVANCING RC-LINE-SPACE-1
+           ELSE
+              WRITE ERROR-LINE
+                   BEFORE ADVANCING RC-LINE-SPACE-1
+           END-IF
+           ADD 1 TO RC-LINE-COUNT
+           .
+
+
+      *300-LEVEL REPORT HEADINGS
+
+      * TRANSACTION REPORT HEADINGS AND FIELDS.
+       302-PRINT-REPORT-HEADINGS.
+           MOVE HEADING-L1 TO REPORT-LINE
+           PERFORM 300-PAGE-PROCESS-1
+           MOVE HEADING-L2 TO REPORT-LINE
+           PERFORM 300-PAGE-PROCESS-1
+           MOVE HEADING-L3 TO REPORT-LINE
+           PERFORM 300-PAGE-PROCESS-1
+           MOVE HEADING-L4 TO REPORT-LINE
+           PERFORM 300-PAGE-PROCESS-1
+           .
+
+
+      * ERROR REPORT HANDLINGS AND FIELDS.
+       303-PRINT-ERROR-REPORT-HEADING.
+           MOVE HEADING-L5 TO ERROR-LINE
+           PERFORM 301-PAGE-PROCESS-2
+           MOVE HEADING-L2 TO ERROR-LINE
+           PERFORM 301-PAGE-PROCESS-2
+           MOVE HEADING-L3 TO ERROR-LINE
+           PERFORM 301-PAGE-PROCESS-2
+           MOVE HEADING-L6 TO ERROR-LINE
+           PERFORM 301-PAGE-PROCESS-2
+           .
+
+
+      * CALCULATE THE NEW BALANCE.
+       400-CALC-NEW-BALANCE.
+           MOVE OMR-BALANCE TO AR-BALANCE
+           COMPUTE AR-NEW-BALANCE = AR-BALANCE + AR-DEPOSIT             WAL
+           - AR-WITHDRAWAL
+           MOVE ZEROES TO AR-BALANCE AR-WITHDRAWAL AR-DEPOSIT
+           .
+
+
+      * MOVE THE OLD-MASTER-FILE TO NEW-MASTER-FILE WITH
+      * NO CHANGES
+       401-WRITE-TO-NEW-MASTER-FILE-1.
+           MOVE OMR-OLD-MASTER-RECORD TO
+                NMR-NEW-MASTER-RECORD
+           MOVE NMR-NEW-MASTER-RECORD TO NEW-MASTER-RECORD
+           WRITE NEW-MASTER-RECORD
+                BEFORE ADVANCING RC-LINE-SPACE-1
+           .
+
+
+      * MOVE THE OLD-MASTER-FILE TO NEW-MASTER-FILE,                    NCE.
+      * BUT UPDATE THE BALANCE.
+       402-WRITE-TO-NEW-MASTER-FILE-2.
+           MOVE OMR-OLD-MASTER-RECORD TO NMR-NEW-MASTER-RECORD
+           MOVE AR-NEW-BALANCE TO NMR-BALANCE
+           MOVE NMR-NEW-MASTER-RECORD TO NEW-MASTER-RECORD
+           WRITE NEW-MASTER-RECORD
+                BEFORE ADVANCING RC-LINE-SPACE-1
+           .
+
+
+      *400-LEVEL PROCESS TO MOVE DATA TO RL-REPORT-LINE                  AND PRINT
+      *FOR TRANS-REPORT
+       404-WRITE-TO-TRANS-REPORT.
+           MOVE OMR-FIRST-NAME TO RL-FIRST-NAME
+           MOVE OMR-LAST-NAME TO RL-LAST-NAME
+           MOVE OMR-STUDENT-ID TO RL-STUDENT-ID
+           MOVE OMR-BALANCE TO RL-BALANCE
+           MOVE TR-TRANSACTION-TYPE TO RL-TRANSACTION
+           MOVE TR-AMOUNT TO RL-AMOUNT
+           MOVE RL-REPORT-LINE TO REPORT-LINE
+           PERFORM 300-PAGE-PROCESS-1
+           .
+
+
+      *400-LEVEL PROCESS TO MOVE DATA TO EL-ERROR-LINE                   PRINT
+      *ERROR-REPORT
+       405-WRITE-TO-ERROR-REPORT.
+           MOVE TR-STUDENT-ID TO EL-STUDENT-ID
+           MOVE TR-TRANSACTION-TYPE TO EL-TRANSACTION
+           MOVE TR-AMOUNT TO EL-AMOUNT
+           MOVE EL-ERROR-LINE TO ERROR-LINE
+           PERFORM 301-PAGE-PROCESS-2
+           .
+
+
+
+/*
+//LKED.SYSPRINT DD DUMMY
+//GO.FILEIN DD DSN=KC02580.G3P5M.DAT,DISP=SHR
+//GO.FILEIN2 DD DSN=KC02580.G3P5T.DAT,DISP=SHR
+//GO.FILEOUT DD SYSOUT=A
+//GO.RPTOUT DD SYSOUT=A
+//GO.ERROUT DD SYSOUT=A
+//GO.SYSOUT DD SYSOUT=A
+//
+
