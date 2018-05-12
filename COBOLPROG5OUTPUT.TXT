@@ -128,7 +128,7 @@
    LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
 0  000001                IDENTIFICATION DIVISION.
    000002                PROGRAM-ID. FREPORT
-   000003                AUTHOR. JEFFREY COCKLIN, THOMAS COX, ROBERT GUNTER
+   000003                AUTHOR. JEFFREY COCKLIN
    000004                DATE-WRITTEN.  4-19-18
    000005                DATE-COMPILED. 04/30/18.
    000006               *CLASS CSCE 205 SECTION 1 PROGRAM 5.
