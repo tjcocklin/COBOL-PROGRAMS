@@ -1,0 +1,426 @@
+1                    J E S 2  J O B  L O G  --  S Y S T E M  S 0 W 1  --  N O D
+0
+ 21.43.16 JOB00601 ---- FRIDAY,    13 APR 2018 ----
+ 21.43.16 JOB00601  IRR010I  USERID KC03CDF  IS ASSIGNED TO THIS JOB.
+ 21.43.16 JOB00601  IEF677I WARNING MESSAGE(S) FOR JOB KC03CDFX ISSUED
+ 21.43.16 JOB00601  ICH70001I KC03CDF  LAST ACCESS AT 21:26:42 ON FRIDAY, APRIL
+ 21.43.16 JOB00601  $HASP373 KC03CDFX STARTED - INIT 2    - CLASS A        - SYS
+ 21.43.17 JOB00601  -                                         --TIMINGS (MINS.)-
+ 21.43.17 JOB00601  -JOBNAME  STEPNAME PROCSTEP    RC   EXCP    TCB    SRB  CLOC
+ 21.43.17 JOB00601  -KC03CDFX                      00    433 ******    .00     .
+ 21.43.17 JOB00601  -KC03CDFX                      00    188 ******    .00     .
+ 21.43.17 JOB00601  -KC03CDFX                      00     69 ******    .00     .
+ 21.43.17 JOB00601  -KC03CDFX ENDED.  NAME-COCKLIN              TOTAL TCB CPU TI
+ 21.43.17 JOB00601  $HASP395 KC03CDFX ENDED
+0------ JES2 JOB STATISTICS ------
+-  13 APR 2018 JOB EXECUTION DATE
+-          266 CARDS READ
+-          425 SYSOUT PRINT RECORDS
+-            0 SYSOUT PUNCH RECORDS
+-           22 SYSOUT SPOOL KBYTES
+-         0.01 MINUTES EXECUTION TIME
+         1 //KC03CDFX JOB 1,COCKLIN,LINES=(5,CANCEL),NOTIFY=KC03CDF,
+           // MSGLEVEL=(2,0),MSGCLASS=A
+         2 //STEP2 EXEC PROC=IGYWCLG,LNGPRFX='IGY420',
+           // PARM.COBOL='NOX'
+        26 //SYSIN DD *
+        30 //LKED.SYSPRINT DD DUMMY
+           //* REPLACE THE ? IN THE DSN BELOW WITH YOUR GROUP NUMBER
+        41 //GO.FILEIN DD DSN=KC02580.G3P4.DAT,DISP=SHR
+        42 //GO.FILEOUT DD SYSOUT=A
+        43 //GO.SYSOUT DD SYSOUT=A
+  STMT NO. MESSAGE
+         2 IEFC001I PROCEDURE IGYWCLG WAS EXPANDED USING SYSTEM LIBRARY USER.PRO
+        35 IEF686I DDNAME REFERRED TO ON DDNAME KEYWORD IN PRIOR STEP WAS NOT RE
+ ICH70001I KC03CDF  LAST ACCESS AT 21:26:42 ON FRIDAY, APRIL 13, 2018
+ IEF142I KC03CDFX COBOL STEP2 - STEP WAS EXECUTED - COND CODE 0000
+ IEF373I STEP/COBOL   /START 2018103.2143
+ IEF032I STEP/COBOL   /STOP  2018103.2143
+         CPU:     0 HR  00 MIN  00.03 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+         VIRT:  8896K  SYS:   308K  EXT:  1578668K  SYS:    12300K
+         ATB- REAL:                    24K  SLOTS:                     0K
+              VIRT- ALLOC:       4M SHRD:       0M
+ IEF142I KC03CDFX LKED STEP2 - STEP WAS EXECUTED - COND CODE 0000
+ IEF373I STEP/LKED    /START 2018103.2143
+ IEF032I STEP/LKED    /STOP  2018103.2143
+         CPU:     0 HR  00 MIN  00.02 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+         VIRT:    88K  SYS:   296K  EXT:     1640K  SYS:    12240K
+         ATB- REAL:                     0K  SLOTS:                     0K
+              VIRT- ALLOC:       0M SHRD:       0M
+ IEF142I KC03CDFX GO STEP2 - STEP WAS EXECUTED - COND CODE 0000
+ IEF373I STEP/GO      /START 2018103.2143
+ IEF032I STEP/GO      /STOP  2018103.2143
+         CPU:     0 HR  00 MIN  00.01 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+         VIRT:   120K  SYS:   384K  EXT:     2948K  SYS:    12296K
+         ATB- REAL:                     0K  SLOTS:                     0K
+              VIRT- ALLOC:       0M SHRD:       0M
+ IEF375I  JOB/KC03CDFX/START 2018103.2143
+ IEF033I  JOB/KC03CDFX/STOP  2018103.2143
+         CPU:     0 HR  00 MIN  00.06 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0                         Date 0
+0Invocation parameters:
+  NOX
+0Options in effect:
+  NOADATA
+    ADV
+    QUOTE
+    ARITH(COMPAT)
+  NOAWO
+  NOBLOCK0
+    BUFSIZE(4096)
+  NOCICS
+    CODEPAGE(1140)
+  NOCOMPILE(S)
+  NOCURRENCY
+    DATA(31)
+  NODATEPROC
+    DBCS
+  NODECK
+  NODIAGTRUNC
+  NODLL
+  NODUMP
+  NODYNAM
+  NOEXIT
+  NOEXPORTALL
+  NOFASTSRT
+    FLAG(I,I)
+  NOFLAGMIG4
+  NOFLAGSTD
+    INTDATE(ANSI)
+    LANGUAGE(EN)
+  NOLIB
+    LINECOUNT(60)
+  NOLIST
+  NOMAP
+  NOMDECK
+  NONAME
+    NSYMBOL(NATIONAL)
+  NONUMBER
+    NUMPROC(NOPFD)
+    OBJECT
+  NOOFFSET
+  NOOPTIMIZE
+    OUTDD(SYSOUT)
+    PGMNAME(COMPAT)
+    RENT
+    RMODE(AUTO)
+    SEQUENCE
+    SIZE(MAX)
+    SOURCE
+    SPACE(1)
+  NOSQL
+    SQLCCSID
+  NOSSRANGE
+  NOTERM
+  NOTEST
+  NOTHREAD
+    TRUNC(STD)
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0                         Date 0
+0 NOVBREF
+  NOWORD
+    XMLPARSE(XMLSS)
+  NOXREF
+    YEARWINDOW(1900)
+    ZWB
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               SREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000001                IDENTIFICATION DIVISION.
+   000002                PROGRAM-ID. SREPORT
+   000003                AUTHOR. JEFFREY COCKLIN
+   000004                DATE-WRITTEN.  4-10-18
+   000005                DATE-COMPILED. 04/13/18.
+   000006               *CLASS CSCE 205 SECTION 1 PROGRAM 4.
+   000007
+   000008
+   000009                ENVIRONMENT DIVISION.
+   000010                INPUT-OUTPUT SECTION.
+   000011                FILE-CONTROL.
+   000012                    SELECT INPUT-LIST
+   000013                         ASSIGN TO FILEIN.
+   000014                    SELECT ANIMAL-ROSTER
+   000015                         ASSIGN TO FILEOUT.
+   000016
+   000017                 DATA DIVISION.
+   000018                 FILE SECTION.
+   000019                 FD INPUT-LIST
+   000020                    RECORDING MODE F.
+   000021                 01 INPUT-RECORD         PIC X(33).
+   000022                 FD ANIMAL-ROSTER
+   000023                    RECORDING MODE F.
+   000024                 01 OUTPUT-RPT           PIC X(337).
+   000025
+   000026                 WORKING-STORAGE SECTION.
+   000027                 01 PROGRAM-CONTROL-SWITCHES.
+   000028                    05 END-OF-FILE-SWITCH       PIC X(1).
+   000029                       88 S1-END-OF-FILE      VALUE 'T'.
+   000030                       88 S1-NOT-END-OF-FILE  VALUE 'F'.
+   000031                 01 WS-DATE.
+   000032                    05 WS-CDATE                 PIC X(20).
+   000033                 01 ARITHMETIC-WORKING-STORAGE.
+   000034                    05 AR-ANIMAL-TOTAL          PIC 9(2).
+   000035                 01 REPORT-CONTROLS.
+   000036                    05 RC-LINE-SPACE-1           PIC 9(2).
+   000037                    05 RC-LINE-SPACE-3           PIC 9(2).
+   000038                    05 RC-PAGE-COUNT            PIC 9(2).
+   000039                    05 RC-LINE-COUNT            PIC 9(2).
+   000040               * NEW PAGE BEFORE 40 LINES
+   000041                 01 IR-INPUT-RECORD.
+   000042                    05 IR-PET-NAME              PIC X(11).
+   000043                    05 IR-SPECIES               PIC X(13).
+   000044                    05 IR-STATUS                PIC X(1).
+   000045                    05 IR-DATE                  PIC 9(8).
+   000046               * TOTAL 33
+   000047               * TABLE
+   000048                 01 STATUS-DATA.
+   000049                    05 PIC X(11) VALUE 'DDISPLACEDN'.
+   000050                    05 PIC X(11) VALUE 'SSTRAY    Y'.
+   000051                    05 PIC X(11) VALUE 'AADOPTED  N'.
+   000052                    05 PIC X(11) VALUE 'RRESCUED  Y'.
+   000053                 01 STATUS-TABLE REDEFINES STATUS-DATA.
+   000054                    05 STATUS-ENTRY OCCURS 4 TIMES INDEXED BY SE-IDX.
+   000055                       10 SE-STATUS             PIC X(1).
+   000056                       10 SE-DESCRIPTION        PIC X(9).
+   000057                       10 SE-ADOPTABLE          PIC X(1).
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               SREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000058               * TOTAL 11
+   000059               * REPORT COUNT BEGINS
+   000060                 01 HEADING-L1.
+   000061                    05 FILLER                   PIC X(24) VALUE SPACES.
+   000062                    05 PIC X(23) VALUE 'GAMECOCK ANIMAL SHELTER'.
+   000063               * TOTAL 47
+   000064                 01 HEADING-L2.
+   000065                    05 FILLER                   PIC X(57) VALUE SPACES.
+   000066                    05 HL2-MONTH                PIC 9(2).
+   000067                    05 HL2-SPEARATOR1           PIC X(1) VALUE '/'.
+   000068                    05 HL2-DAY                  PIC 9(2).
+   000069                    05 HL2-SPEARATOR2           PIC X(1) VALUE '/'.
+   000070                    05 HL2-YEAR                 PIC 9(4).
+   000071               * TOTAL 67
+   000072                 01 HEADING-L3.
+   000073                    05 FILLER                   PIC X(57) VALUE SPACES.
+   000074                    05 PIC X(6) VALUE 'PAGE: '.
+   000075                    05 HL3-PAGE-NUM             PIC 9(2).
+   000076               * TOTAL 65
+   000077                 01 HEADLING-L4.
+   000078                    05 PIC X(8) VALUE 'PET NAME'.
+   000079                    05 FILLER                   PIC X(4) VALUE SPACES.
+   000080                    05 PIC X(7) VALUE 'SPECIES'.
+   000081                    05 FILLER                   PIC X(7) VALUE SPACES.
+   000082                    05 PIC X(6) VALUE 'STATUS'.
+   000083                    05 FILLER                   PIC X(1) VALUE SPACES.
+   000084                    05 PIC X(11) VALUE 'DESCRIPTION'.
+   000085                    05 FILLER                   PIC X(1) VALUE SPACES.
+   000086                    05 PIC X(9) VALUE 'ADOPTABLE'.
+   000087                    05 FILLER                   PIC X(1) VALUE SPACES.
+   000088                    05 PIC X(10) VALUE 'ENTRY-DATE'.
+   000089               * TOTAL 65
+   000090                 01 DETAIL-LINE.
+   000091                    05 DL-PET-NAME              PIC X(11).
+   000092                    05 FILLER                   PIC X(1) VALUE SPACES.
+   000093                    05 DL-SPECIES               PIC X(13).
+   000094                    05 FILLER                   PIC X(3) VALUE SPACES.
+   000095                    05 DL-STATUS                PIC X(1).
+   000096                    05 FILLER                   PIC X(4) VALUE SPACES.
+   000097                    05 DL-DESCRIPTION           PIC X(9).
+   000098                    05 FILLER                   PIC X(5) VALUE SPACES.
+   000099                    05 DL-ADOPTABLE             PIC X(1).
+   000100                    05 FILLER                   PIC X(7) VALUE SPACES.
+   000101                    05 DL-ENTRY-DATE            PIC 99/99/9999.
+   000102               * TOTAL 65
+   000103                 01 TOTAL-LINE.
+   000104                    05 PIC X(26) VALUE 'CURRENT SHELTER CAPACITY: '.
+   000105                    05 TL-TOTAL-NUMBER          PIC 9(2).
+   000106               * TOTAL 28
+   000107
+   000108
+   000109                PROCEDURE DIVISION.
+   000110                100-MAIN.
+   000111                    OPEN INPUT INPUT-LIST
+   000112                         OUTPUT ANIMAL-ROSTER
+   000113                    PERFORM 101-INIT
+   000114                    PERFORM 306-PRINT-ALL-HEADINGS
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               SREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000115                    PERFORM UNTIL S1-END-OF-FILE
+   000116      1                READ INPUT-LIST
+   000117      1                    INTO IR-INPUT-RECORD
+   000118      1                AT END
+   000119      2                   SET S1-END-OF-FILE TO TRUE
+   000120      1                NOT AT END
+   000121      2                     PERFORM 200-DRIVER
+   000122      1                END-READ
+   000123                    END-PERFORM
+   000124                    PERFORM 402-TOTAL
+   000125                    CLOSE INPUT-LIST
+   000126                          ANIMAL-ROSTER
+   000127                    STOP RUN
+   000128                    .
+   000129
+   000130                101-INIT.
+   000131                    MOVE FUNCTION CURRENT-DATE TO WS-CDATE
+   000132                    MOVE WS-CDATE(5:2) TO HL2-MONTH
+   000133                    MOVE WS-CDATE(7:2) TO HL2-DAY
+   000134                    MOVE WS-CDATE(1:4) TO HL2-YEAR
+   000135
+   000136                    SET S1-NOT-END-OF-FILE TO TRUE
+   000137
+   000138                    MOVE 1 TO RC-LINE-SPACE-1
+   000139                    MOVE 3 TO RC-LINE-SPACE-3
+   000140                    ADD 1 TO RC-PAGE-COUNT
+   000141
+   000142                    INITIALIZE ARITHMETIC-WORKING-STORAGE
+   000143                               RC-LINE-COUNT
+   000144                    .
+   000145
+   000146                200-DRIVER.
+   000147                    PERFORM 400-TABLE-SEARCH
+   000148                    PERFORM 401-DETAIL-LINE-PROCESS
+   000149                    .
+   000150
+   000151                300-PAGE-PROCESS-1.
+   000152                    IF RC-LINE-COUNT >= 40
+   000153      1                ADD 1 TO RC-PAGE-COUNT
+   000154      1                MOVE ZERO TO RC-LINE-COUNT
+   000155      1                WRITE OUTPUT-RPT
+   000156      1                    BEFORE ADVANCING RC-LINE-SPACE-1
+   000157      1                MOVE HEADING-L2 TO OUTPUT-RPT
+   000158      1                WRITE OUTPUT-RPT
+   000159      1                    BEFORE ADVANCING PAGE
+   000160      1                ADD 3 TO RC-LINE-COUNT
+   000161      1                MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+   000162      1                MOVE HEADING-L3 TO OUTPUT-RPT
+   000163      1                WRITE OUTPUT-RPT
+   000164      1                    BEFORE ADVANCING RC-LINE-SPACE-1
+   000165      1                MOVE HEADLING-L4 TO OUTPUT-RPT
+   000166      1                WRITE OUTPUT-RPT
+   000167      1                    BEFORE ADVANCING RC-LINE-SPACE-1
+   000168                    ELSE
+   000169      1                WRITE OUTPUT-RPT
+   000170      1                    BEFORE ADVANCING RC-LINE-SPACE-1
+   000171                    END-IF
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               SREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000172                    ADD 1 TO RC-LINE-COUNT
+   000173                    .
+   000174
+   000175                 301-PAGE-PROCESS-2.
+   000176                    IF RC-LINE-COUNT >= 40
+   000177      1                ADD 1 TO RC-PAGE-COUNT
+   000178      1                MOVE ZERO TO RC-LINE-COUNT
+   000179      1                WRITE OUTPUT-RPT
+   000180      1                    BEFORE ADVANCING RC-LINE-SPACE-1
+   000181      1                MOVE HEADING-L2 TO OUTPUT-RPT
+   000182      1                WRITE OUTPUT-RPT
+   000183      1                    BEFORE ADVANCING PAGE
+   000184      1                MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+   000185      1                MOVE HEADING-L3 TO OUTPUT-RPT
+   000186      1                WRITE OUTPUT-RPT
+   000187      1                    BEFORE ADVANCING RC-LINE-SPACE-1
+   000188      1                ADD 4 TO RC-LINE-COUNT
+   000189      1                MOVE HEADLING-L4 TO OUTPUT-RPT
+   000190      1                WRITE OUTPUT-RPT
+   000191      1                    BEFORE ADVANCING RC-LINE-SPACE-1
+   000192                    ELSE
+   000193      1                WRITE OUTPUT-RPT
+   000194      1                    BEFORE ADVANCING RC-LINE-SPACE-3
+   000195      1                ADD 3 TO RC-LINE-COUNT
+   000196                    END-IF
+   000197                    .
+   000198
+   000199                 302-PRINT-REPORT-HEADING.
+   000200                    MOVE HEADING-L1 TO OUTPUT-RPT
+   000201                    PERFORM 300-PAGE-PROCESS-1
+   000202                    .
+   000203
+   000204                 303-PRINT-DATE.
+   000205                    MOVE HEADING-L2 TO OUTPUT-RPT
+   000206                    PERFORM 300-PAGE-PROCESS-1
+   000207                    .
+   000208
+   000209                 304-PRINT-PAGE.
+   000210                    MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+   000211                    MOVE HEADING-L3 TO OUTPUT-RPT
+   000212                    PERFORM 301-PAGE-PROCESS-2
+   000213                    .
+   000214
+   000215                 305-PRINT-FIELD-HEADING.
+   000216                    MOVE HEADLING-L4 TO OUTPUT-RPT
+   000217                    PERFORM 300-PAGE-PROCESS-1
+   000218                    .
+   000219
+   000220                 306-PRINT-ALL-HEADINGS.
+   000221                    PERFORM 302-PRINT-REPORT-HEADING
+   000222                    PERFORM 303-PRINT-DATE
+   000223                    PERFORM 304-PRINT-PAGE
+   000224                    PERFORM 305-PRINT-FIELD-HEADING
+   000225                    .
+   000226
+   000227                400-TABLE-SEARCH.
+   000228                    SET SE-IDX TO 1
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               SREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000229                    SEARCH STATUS-ENTRY
+   000230                       AT END
+   000231      1                   MOVE ALL 'X' TO DL-STATUS DL-DESCRIPTION
+   000232      1                                 DL-ADOPTABLE
+   000233                       WHEN IR-STATUS EQUAL TO SE-STATUS (SE-IDX)
+   000234      1                   MOVE SE-STATUS (SE-IDX) TO DL-STATUS
+   000235      1                   MOVE SE-DESCRIPTION (SE-IDX) TO DL-DESCRIPTIO
+   000236      1                   MOVE SE-ADOPTABLE (SE-IDX) TO DL-ADOPTABLE
+   000237                    END-SEARCH
+   000238                    .
+   000239
+   000240                 401-DETAIL-LINE-PROCESS.
+   000241                    MOVE IR-PET-NAME TO DL-PET-NAME
+   000242                    MOVE IR-SPECIES TO DL-SPECIES
+   000243                    MOVE IR-DATE TO DL-ENTRY-DATE
+   000244                    MOVE DETAIL-LINE TO OUTPUT-RPT
+   000245                    ADD 1 TO AR-ANIMAL-TOTAL
+   000246                    PERFORM 300-PAGE-PROCESS-1
+   000247                    .
+   000248
+   000249                 402-TOTAL.
+   000250                    MOVE AR-ANIMAL-TOTAL TO TL-TOTAL-NUMBER
+   000251                    MOVE TOTAL-LINE TO OUTPUT-RPT
+   000252                    PERFORM 301-PAGE-PROCESS-2
+   000253                    .
+   000254
+   000255
+-* Statistics for COBOL program SREPORT:
+ *    Source records = 255
+ *    Data Division statements = 45
+ *    Procedure Division statements = 77
+0End of compilation 1,  program SREPORT,  no statements flagged.
+0Return code 0
+                         GAMECOCK ANIMAL SHELTER
+                                                          04/13/2018
+                                                          PAGE: 01
+-PET NAME    SPECIES       STATUS DESCRIPTION ADOPTABLE ENTRY-DATE
+ CHARLEY     LABRADOR        A    ADOPTED       N       01/01/2017
+ SPARKY      POODLE          A    ADOPTED       N       01/08/2017
+ MAX         HUSKY           D    DISPLACED     N       01/09/2017
+ RED         DOBERMANN       A    ADOPTED       N       01/20/2017
+ CLIFFORD    BEAGLE          S    STRAY         Y       01/25/2017
+ CHARLIE     CHIHUAHUA       D    DISPLACED     N       02/02/2017
+ CHIRPY      COCKATIEL       A    ADOPTED       N       02/06/2017
+ CANDY       SCOTTISH FOLD   R    RESCUED       Y       02/06/2017
+ BOMBON      SHIH TZU        R    RESCUED       Y       02/07/2017
+ BUTTERS     GERMAN SHEP     S    STRAY         Y       02/09/2017
+ JACKSON     PERSIAN CAT     R    RESCUED       Y       02/10/2017
+ SULLY       TERRIER         A    ADOPTED       N       02/10/2017
+ OLLIE       PARROT          A    ADOPTED       N       02/10/2017
+ GILL        GOLDFISH        D    DISPLACED     N       02/11/2017
+ MR WHISKERS RAGDOLL         A    ADOPTED       N       02/12/2017
+ COWBOY      CORGI           S    STRAY         Y       02/12/2017
+ SPIRIT      HORSE           R    RESCUED       Y       02/13/2017
+ PEPPER      FELINE MIX      S    STRAY         Y       12/06/2017
+ ROGER       RABBIT          S    STRAY         Y       01/05/2018
+ LIMON       CANINE MIX      A    ADOPTED       N       02/07/2018
+ CHILE       PARAKEET        S    STRAY         Y       12/07/2017
+ LIZZY       GECKO           D    DISPLACED     N       02/10/2018
+ MIKEY       CORGI           S    STRAY         Y       01/20/2017
+ JACKY       RABBIT          A    ADOPTED       N       02/13/2018
+ SPARK       LABRODOR        R    RESCUED       Y       01/20/2017
+ CURRENT SHELTER CAPACITY: 25
+

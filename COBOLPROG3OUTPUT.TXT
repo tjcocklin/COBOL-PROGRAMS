@@ -1,0 +1,653 @@
+1                    J E S 2  J O B  L O G  --  S Y S T E M  S 0 W 1  --  N O D
+0
+ 23.26.09 JOB08453 ---- TUESDAY,   03 APR 2018 ----
+ 23.26.09 JOB08453  IRR010I  USERID KC03CDF  IS ASSIGNED TO THIS JOB.
+ 23.26.09 JOB08453  IEF677I WARNING MESSAGE(S) FOR JOB KC03CDFX ISSUED
+ 23.26.09 JOB08453  ICH70001I KC03CDF  LAST ACCESS AT 23:07:44 ON TUESDAY, APRIL
+ 23.26.09 JOB08453  $HASP373 KC03CDFX STARTED - INIT 2    - CLASS A        - SYS
+ 23.26.10 JOB08453  -                                         --TIMINGS (MINS.)-
+ 23.26.10 JOB08453  -JOBNAME  STEPNAME PROCSTEP    RC   EXCP    TCB    SRB  CLOC
+ 23.26.10 JOB08453  -KC03CDFX                      00    458 ******    .00     .
+ 23.26.10 JOB08453  -KC03CDFX                      00    189 ******    .00     .
+ 23.26.10 JOB08453  -KC03CDFX                      00     80 ******    .00     .
+ 23.26.10 JOB08453  -KC03CDFX ENDED.  NAME-COCKLIN              TOTAL TCB CPU TI
+ 23.26.10 JOB08453  $HASP395 KC03CDFX ENDED
+0------ JES2 JOB STATISTICS ------
+-  03 APR 2018 JOB EXECUTION DATE
+-          410 CARDS READ
+-          651 SYSOUT PRINT RECORDS
+-            0 SYSOUT PUNCH RECORDS
+-           54 SYSOUT SPOOL KBYTES
+-         0.01 MINUTES EXECUTION TIME
+         1 //KC03CDFX JOB 1,COCKLIN,LINES=(5,CANCEL),NOTIFY=KC03CDF,
+           // MSGLEVEL=(2,0),MSGCLASS=A
+         2 //STEP2 EXEC PROC=IGYWCLG,LNGPRFX='IGY420',
+           // PARM.COBOL='NOX'
+        26 //SYSIN DD *
+        30 //LKED.SYSPRINT DD DUMMY
+           //* REPLACE THE ? IN THE DSN BELOW WITH YOUR GROUP NUMBER
+        41 //GO.FILEIN DD DSN=KC02580.G3P3.DAT,DISP=SHR
+        42 //GO.FILEOUT DD SYSOUT=A
+        43 //GO.SYSOUT DD SYSOUT=A
+  STMT NO. MESSAGE
+         2 IEFC001I PROCEDURE IGYWCLG WAS EXPANDED USING SYSTEM LIBRARY USER.PRO
+        35 IEF686I DDNAME REFERRED TO ON DDNAME KEYWORD IN PRIOR STEP WAS NOT RE
+ ICH70001I KC03CDF  LAST ACCESS AT 23:07:44 ON TUESDAY, APRIL 3, 2018
+ IEF142I KC03CDFX COBOL STEP2 - STEP WAS EXECUTED - COND CODE 0000
+ IEF373I STEP/COBOL   /START 2018093.2326
+ IEF032I STEP/COBOL   /STOP  2018093.2326
+         CPU:     0 HR  00 MIN  00.03 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+         VIRT:  8896K  SYS:   308K  EXT:  1578668K  SYS:    12300K
+         ATB- REAL:                    24K  SLOTS:                     0K
+              VIRT- ALLOC:       4M SHRD:       0M
+ IEF142I KC03CDFX LKED STEP2 - STEP WAS EXECUTED - COND CODE 0000
+ IEF373I STEP/LKED    /START 2018093.2326
+ IEF032I STEP/LKED    /STOP  2018093.2326
+         CPU:     0 HR  00 MIN  00.02 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+         VIRT:    88K  SYS:   296K  EXT:     1640K  SYS:    12240K
+         ATB- REAL:                     0K  SLOTS:                     0K
+              VIRT- ALLOC:       0M SHRD:       0M
+ IEF142I KC03CDFX GO STEP2 - STEP WAS EXECUTED - COND CODE 0000
+ IEF373I STEP/GO      /START 2018093.2326
+ IEF032I STEP/GO      /STOP  2018093.2326
+         CPU:     0 HR  00 MIN  00.01 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+         VIRT:   120K  SYS:   384K  EXT:     2948K  SYS:    12296K
+         ATB- REAL:                     0K  SLOTS:                     0K
+              VIRT- ALLOC:       0M SHRD:       0M
+ IEF375I  JOB/KC03CDFX/START 2018093.2326
+ IEF033I  JOB/KC03CDFX/STOP  2018093.2326
+         CPU:     0 HR  00 MIN  00.06 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0                         Date 0
+0Invocation parameters:
+  NOX
+0Options in effect:
+  NOADATA
+    ADV
+    QUOTE
+    ARITH(COMPAT)
+  NOAWO
+  NOBLOCK0
+    BUFSIZE(4096)
+  NOCICS
+    CODEPAGE(1140)
+  NOCOMPILE(S)
+  NOCURRENCY
+    DATA(31)
+  NODATEPROC
+    DBCS
+  NODECK
+  NODIAGTRUNC
+  NODLL
+  NODUMP
+  NODYNAM
+  NOEXIT
+  NOEXPORTALL
+  NOFASTSRT
+    FLAG(I,I)
+  NOFLAGMIG4
+  NOFLAGSTD
+    INTDATE(ANSI)
+    LANGUAGE(EN)
+  NOLIB
+    LINECOUNT(60)
+  NOLIST
+  NOMAP
+  NOMDECK
+  NONAME
+    NSYMBOL(NATIONAL)
+  NONUMBER
+    NUMPROC(NOPFD)
+    OBJECT
+  NOOFFSET
+  NOOPTIMIZE
+    OUTDD(SYSOUT)
+    PGMNAME(COMPAT)
+    RENT
+    RMODE(AUTO)
+    SEQUENCE
+    SIZE(MAX)
+    SOURCE
+    SPACE(1)
+  NOSQL
+    SQLCCSID
+  NOSSRANGE
+  NOTERM
+  NOTEST
+  NOTHREAD
+    TRUNC(STD)
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0                         Date 0
+0 NOVBREF
+  NOWORD
+    XMLPARSE(XMLSS)
+  NOXREF
+    YEARWINDOW(1900)
+    ZWB
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               WREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000001                IDENTIFICATION DIVISION.
+   000002                PROGRAM-ID. WREPORT
+   000003                AUTHOR. JEFFREY COCKLIN
+   000004                DATE-WRITTEN.  3-24-18
+   000005                DATE-COMPILED. 04/03/18.
+   000006               *CLASS CSCE 205 SECTION 1 PROGRAM 3.
+   000007
+   000008                ENVIRONMENT DIVISION.
+   000009                INPUT-OUTPUT SECTION.
+   000010                FILE-CONTROL.
+   000011                    SELECT SURVEY-INPUT
+   000012                        ASSIGN TO FILEIN.
+   000013                    SELECT WEATHER-RPT
+   000014                        ASSIGN TO FILEOUT.
+   000015                DATA DIVISION.
+   000016                FILE SECTION.
+   000017                FD SURVEY-INPUT
+   000018                    RECORDING MODE IS F.
+   000019                01 SURVEY-RECORD                  PIC X(55).
+   000020                FD WEATHER-RPT
+   000021                    RECORDING MODE IS F.
+   000022                01 RPT-OUTPUT                     PIC X(470).
+   000023               *TO BE CALCULATED
+   000024                WORKING-STORAGE SECTION.
+   000025                01 PROGRAM-CONTROL-SWITCHES.
+   000026                    05 END-OF-FILE-SWITCH          PIC X(1).
+   000027                        88 S1-END-OF-FILE      VALUE 'T'.
+   000028                        88 S1-NOT-END-OF-FILE  VALUE 'F'.
+   000029                    05 FIRST-RECORD-SWITCH         PIC X(1).
+   000030                        88 S2-FIRST-RECORD     VALUE 'T'.
+   000031                        88 S2-NOT-FIRST-RECORD VALUE 'F'.
+   000032                01 WS-DATE.
+   000033                    05 WS-CDATE                    PIC X(20).
+   000034                01 ARITHMETIC-WORKING-STORAGE.
+   000035                    05 AR-TOTAL-PRECIP-ACUMULATOR  PIC 9(4).
+   000036                    05 AR-STATE-ACCUMULATOR        PIC 9(4).
+   000037                    05 AR-STATE-AVG                PIC 9(4).
+   000038                    05 AR-COUNTY-ACUMULATOR        PIC 9(4).
+   000039                    05 AR-COUNTY-COUNTER           PIC 9(2).
+   000040                    05 AR-COUNTY-AVG               PIC 9(4).
+   000041                    05 AR-CITY-COUNTER             PIC 9(2).
+   000042                    05 AR-CITY-ACUMULATOR          PIC 9(4).
+   000043                01 REPORT-CONTROLS.
+   000044                    05 RC-CURRENT-STATE            PIC X(2).
+   000045                    05 RC-CURRENT-COUNTY           PIC X(20).
+   000046                    05 RC-LINE-SPACE-1             PIC 9(2).
+   000047                    05 RC-LINE-SPACE-2             PIC 9(2).
+   000048                    05 RC-LINE-SPACE-3             PIC 9(2).
+   000049                    05 RC-LINE-COUNT               PIC 9(2).
+   000050                    05 RC-PAGE-COUNT               PIC 9(2).
+   000051               * NEW PAGE BEFORE 40 LINES
+   000052                 01 SR-SURVEY-RECORD.
+   000053                    05 SR-STATE                    PIC X(2).
+   000054                    05 SR-COUNTY                   PIC X(20).
+   000055                    05 SR-CITY                     PIC X(21).
+   000056                    05 SR-RAINFALL                 PIC 9(3).
+   000057                    05 SR-SNOWFALL                 PIC 9(3).
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               WREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000058                    05 SR-HAIL                     PIC 9(3).
+   000059                    05 SR-SLEET                    PIC 9(3).
+   000060               * TOTAL 55 (NOT PART OF REPORT COUNT!)
+   000061                 01 HEADING-L1.
+   000062                    05 FILLER               PIC X(11) VALUE SPACES.
+   000063                    05 PIC X(21) VALUE 'WEATHER SURVEY REPORT'.
+   000064               * TOTAL 32
+   000065                 01 HEADING-L2.
+   000066                    05 FILLER               PIC X(32) VALUE SPACES.
+   000067                    05 HL2-MONTH                   PIC 9(2).
+   000068                    05 HL2-SEPARATOR1       PIC X(1) VALUE '/'.
+   000069                    05 HL2-DAY                     PIC 9(2).
+   000070                    05 HL2-SEPARATOR2        PIC X(1) VALUE '/'.
+   000071                    05 HL2-YEAR                    PIC 9(4).
+   000072               * TOTAL 42
+   000073                 01 HEADING-L3.
+   000074                    05 FILLER                PIC X(32) VALUE SPACES.
+   000075                    05 PIC X(6) VALUE 'PAGE: '.
+   000076                    05 HL3-PAGE-NUM                PIC 9(2).
+   000077               * TOTAL 40
+   000078                 01 HEADING-L4.
+   000079                    05 FILLER                PIC X(11) VALUE SPACES.
+   000080                    05 PIC X(7) VALUE 'STATE: '.
+   000081                    05 HL4-STATE                   PIC X(2).
+   000082               * TOTAL 20
+   000083                 01 HEADING-L5.
+   000084                    05 PIC X(8) VALUE 'COUNTY: '.
+   000085                    05 HL5-COUNTY                  PIC X(20).
+   000086               * TOTAL 28
+   000087                 01 HEADING-L6.
+   000088                    05 PIC X(4) VALUE 'CITY'.
+   000089                    05 FILLER                PIC X(17) VALUE SPACES.
+   000090                    05 PIC X(8) VALUE 'RAINFALL'.
+   000091                    05 FILLER                PIC X(1) VALUE SPACES.
+   000092                    05 PIC X(8) VALUE 'SNOWFALL'.
+   000093                    05 FILLER                PIC X(2) VALUE SPACES.
+   000094                    05 PIC X(4) VALUE 'HAIL'.
+   000095                    05 FILLER                PIC X(5) VALUE SPACES.
+   000096                    05 PIC X(5) VALUE 'SLEET'.
+   000097                    05 FILLER                PIC X(1)  VALUE SPACES.
+   000098                    05 PIC X(5) VALUE 'TOTAL'.
+   000099               * TOTAL 55
+   000100                 01 DETAIL-RPT-OUTPUT.
+   000101                    05 DRO-CITY                    PIC X(21).
+   000102                    05 FILLER                PIC X(2) VALUE SPACES.
+   000103                    05 DRO-RAINFALL                PIC ZZ9.
+   000104                    05 FILLER                PIC X(6) VALUE SPACES.
+   000105                    05 DRO-SNOWFALL                PIC ZZ9.
+   000106                    05 FILLER                PIC X(6) VALUE SPACES.
+   000107                    05 DRO-HAIL                    PIC ZZ9.
+   000108                    05 FILLER                PIC X(6) VALUE SPACES.
+   000109                    05 DRO-SLEET                   PIC ZZ9.
+   000110                    05 FILLER                PIC X(3) VALUE SPACES.
+   000111                    05 DRO-TOTAL                   PIC ZZZ9.
+   000112               * TOTAL 58
+   000113                 01 TOTAL-L1.
+   000114                    05 FILLER                PIC X(38) VALUE SPACES.
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               WREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000115                    05 PIC X(14) VALUE 'COUNTY TOTAL: '.
+   000116                    05 FILLER                PIC X(8) VALUE SPACES.
+   000117                    05 TL1-COUNTY-TOTAL            PIC ZZZ9.
+   000118               * TOTAL 61
+   000119                 01 TOTAL-L2.
+   000120                    05 FILLER                PIC X(38) VALUE SPACES.
+   000121                    05 PIC X(19) VALUE 'COUNTY AVG PRECIP: '.
+   000122                    05 FILLER                PIC X(3) VALUE SPACES.
+   000123                    05 TL2-COUNTY-AVG              PIC ZZZ9.
+   000124               * TOTAL 67
+   000125                 01 TOTAL-L3.
+   000126                    05 FILLER                PIC X(11) VALUE SPACES.
+   000127                    05 PIC X(18) VALUE 'STATE AVG PRECIP: '.
+   000128                    05 TL3-STATE-AVG               PIC ZZZ9.
+   000129               * TOTAL 33
+   000130                 01 TOTAL-L4.
+   000131                    05 PIC X(23) VALUE 'TOTAL RECORDED PRECIP: '.
+   000132                    05 TL4-TOTAL-REC-PRECIP        PIC ZZZ9.
+   000133               * TOTAL 27
+   000134                PROCEDURE DIVISION.
+   000135                100-MAIN.
+   000136                    OPEN INPUT SURVEY-INPUT
+   000137                         OUTPUT WEATHER-RPT
+   000138                    PERFORM 101-INIT
+   000139
+   000140                    PERFORM UNTIL S1-END-OF-FILE
+   000141      1                 READ SURVEY-INPUT
+   000142      1                     INTO SR-SURVEY-RECORD
+   000143      1                 AT END
+   000144      2                     SET S1-END-OF-FILE TO TRUE
+   000145      1                 NOT AT END
+   000146      2                     PERFORM 200-DRIVER
+   000147      1                 END-READ
+   000148                    END-PERFORM
+   000149                    PERFORM 405-TOTAL-PRECIPITATION
+   000150                    CLOSE SURVEY-INPUT
+   000151                          WEATHER-RPT
+   000152                    STOP RUN
+   000153                    .
+   000154
+   000155                101-INIT.
+   000156                    MOVE FUNCTION CURRENT-DATE TO WS-CDATE
+   000157                    MOVE WS-CDATE(5:2) TO HL2-MONTH
+   000158                    MOVE WS-CDATE(7:2) TO HL2-DAY
+   000159                    MOVE WS-CDATE(1:4) TO HL2-YEAR
+   000160
+   000161                    SET S1-NOT-END-OF-FILE TO TRUE
+   000162                    SET S2-FIRST-RECORD TO TRUE
+   000163
+   000164                    MOVE 1 TO RC-LINE-SPACE-1
+   000165                    MOVE 2 TO RC-LINE-SPACE-2
+   000166                    MOVE 3 TO RC-LINE-SPACE-3
+   000167
+   000168                    MOVE 1 TO RC-PAGE-COUNT
+   000169                    INITIALIZE ARITHMETIC-WORKING-STORAGE
+   000170                               RC-LINE-COUNT
+   000171                    .
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               WREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000172
+   000173                200-DRIVER.
+   000174                    EVALUATE  TRUE
+   000175                        WHEN S2-FIRST-RECORD
+   000176      1                       MOVE SR-STATE TO RC-CURRENT-STATE
+   000177      1                       MOVE SR-COUNTY TO RC-CURRENT-COUNTY
+   000178
+   000179      1                       PERFORM 201-FIRST-RECORD-PROCESS
+   000180      1                       SET S2-NOT-FIRST-RECORD TO TRUE
+   000181               * MAJOR CONTROL BREAK OCCURS
+   000182                        WHEN S2-NOT-FIRST-RECORD AND SR-STATE
+   000183                             IS NOT EQUAL TO RC-CURRENT-STATE
+   000184
+   000185      1                      MOVE SR-STATE TO RC-CURRENT-STATE
+   000186      1                      MOVE SR-COUNTY TO RC-CURRENT-COUNTY
+   000187      1                      PERFORM 203-MAJOR-CONTROL-BREAK
+   000188
+   000189               * MINOR CONTROL BREAK OCCURS
+   000190                         WHEN S2-NOT-FIRST-RECORD AND SR-COUNTY IS
+   000191                              NOT EQUAL TO RC-CURRENT-COUNTY
+   000192
+   000193      1                        MOVE SR-COUNTY TO RC-CURRENT-COUNTY
+   000194
+   000195      1                        PERFORM 205-MINOR-CONTROL-BREAK
+   000196               * NORMAL OPERATION
+   000197                         WHEN SR-STATE IS EQUAL TO RC-CURRENT-STATE AND
+   000198                              SR-COUNTY IS EQUAL TO RC-CURRENT-COUNTY
+   000199
+   000200      1                       PERFORM 400-DETAIL-LINE-PROCESS
+   000201
+   000202                     END-EVALUATE
+   000203                     .
+   000204
+   000205                201-FIRST-RECORD-PROCESS.
+   000206                    ADD 1 TO AR-COUNTY-COUNTER
+   000207                    PERFORM 306-PRINT-ALL-HEADINGS
+   000208                    PERFORM 400-DETAIL-LINE-PROCESS
+   000209                    .
+   000210
+   000211                202-MAJOR-CB-RECORD-PROCESS.
+   000212                    ADD 1 TO AR-COUNTY-COUNTER
+   000213                    PERFORM 303-PRINT-STATE-HEADING
+   000214                    PERFORM 304-PRINT-COUNTY-HEADING
+   000215                    PERFORM 305-PRINT-DETAIL-HEADING
+   000216                    PERFORM 400-DETAIL-LINE-PROCESS
+   000217                    .
+   000218
+   000219                203-MAJOR-CONTROL-BREAK.
+   000220                    ADD AR-COUNTY-ACUMULATOR TO AR-STATE-ACCUMULATOR
+   000221                    PERFORM 402-PRINT-COUNTY-TOTAL-LINE
+   000222                    PERFORM 403-COUNTY-LINE-AVG-PROCESS
+   000223                    PERFORM 404-STATE-LINE-AVG-PROCESS
+   000224                    MOVE ZEROS TO AR-COUNTY-ACUMULATOR
+   000225                         AR-STATE-ACCUMULATOR AR-CITY-COUNTER
+   000226                         AR-COUNTY-COUNTER
+   000227                    PERFORM 202-MAJOR-CB-RECORD-PROCESS
+   000228                    .
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               WREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000229
+   000230                204-MINOR-RECORD.
+   000231                    ADD 1 TO AR-COUNTY-COUNTER
+   000232                    PERFORM 304-PRINT-COUNTY-HEADING
+   000233                    PERFORM 305-PRINT-DETAIL-HEADING
+   000234                    PERFORM 400-DETAIL-LINE-PROCESS
+   000235                    .
+   000236
+   000237                205-MINOR-CONTROL-BREAK.
+   000238                    ADD AR-COUNTY-ACUMULATOR TO AR-STATE-ACCUMULATOR
+   000239                    PERFORM 402-PRINT-COUNTY-TOTAL-LINE
+   000240                    PERFORM 403-COUNTY-LINE-AVG-PROCESS
+   000241                    MOVE ZEROS TO AR-COUNTY-ACUMULATOR AR-CITY-COUNTER
+   000242                    PERFORM 204-MINOR-RECORD
+   000243                    .
+   000244                300-PRINT-REPORT-HEADING.
+   000245                    MOVE HEADING-L1 TO RPT-OUTPUT
+   000246                    PERFORM 307-PAGE-PROCESS-1
+   000247                    .
+   000248
+   000249                301-PRINT-DATE-HEADING.
+   000250                    MOVE HEADING-L2 TO RPT-OUTPUT
+   000251                    PERFORM 307-PAGE-PROCESS-1
+   000252                    .
+   000253
+   000254                302-PRINT-PAGE-HEADING.
+   000255                    IF RC-LINE-COUNT >= 40
+   000256      1                 MOVE ZERO TO  RC-LINE-COUNT
+   000257      1                 ADD 1 TO RC-PAGE-COUNT
+   000258      1                 MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+   000259      1                 MOVE HEADING-L3 TO RPT-OUTPUT
+   000260      1                 WRITE RPT-OUTPUT
+   000261      1                     BEFORE ADVANCING PAGE
+   000262                    ELSE
+   000263      1                 MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+   000264      1                 MOVE HEADING-L3 TO RPT-OUTPUT
+   000265      1                 WRITE RPT-OUTPUT
+   000266      1                     BEFORE ADVANCING RC-LINE-SPACE-1
+   000267                    END-IF
+   000268                    ADD 1 TO RC-LINE-COUNT
+   000269                    .
+   000270
+   000271                303-PRINT-STATE-HEADING.
+   000272                    MOVE  SR-STATE TO HL4-STATE
+   000273                    MOVE HEADING-L4 TO RPT-OUTPUT
+   000274                    PERFORM 307-PAGE-PROCESS-1
+   000275                    .
+   000276
+   000277                304-PRINT-COUNTY-HEADING.
+   000278                    MOVE SR-COUNTY TO HL5-COUNTY
+   000279                    MOVE HEADING-L5 TO RPT-OUTPUT
+   000280                    PERFORM 307-PAGE-PROCESS-1
+   000281                    .
+   000282
+   000283                305-PRINT-DETAIL-HEADING.
+   000284                    MOVE HEADING-L6 TO RPT-OUTPUT
+   000285                    PERFORM 307-PAGE-PROCESS-1
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               WREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000286                    .
+   000287
+   000288                306-PRINT-ALL-HEADINGS.
+   000289                    PERFORM 300-PRINT-REPORT-HEADING
+   000290                    PERFORM 301-PRINT-DATE-HEADING
+   000291                    PERFORM 302-PRINT-PAGE-HEADING
+   000292                    PERFORM 303-PRINT-STATE-HEADING
+   000293                    PERFORM 304-PRINT-COUNTY-HEADING
+   000294                    PERFORM 305-PRINT-DETAIL-HEADING
+   000295                    .
+   000296
+   000297                307-PAGE-PROCESS-1.
+   000298                    IF RC-LINE-COUNT >= 40
+   000299      1                 ADD 1 TO RC-PAGE-COUNT
+   000300      1                 MOVE ZERO TO RC-LINE-COUNT
+   000301      1                 WRITE RPT-OUTPUT
+   000302      1                     BEFORE ADVANCING RC-LINE-SPACE-1
+   000303      1                 MOVE HEADING-L2 TO RPT-OUTPUT
+   000304      1                 WRITE RPT-OUTPUT
+   000305      1                     BEFORE ADVANCING PAGE
+   000306      1                 ADD 2 TO RC-LINE-COUNT
+   000307      1                 MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+   000308      1                 MOVE HEADING-L3 TO RPT-OUTPUT
+   000309      1                 WRITE RPT-OUTPUT
+   000310      1                     BEFORE ADVANCING RC-LINE-SPACE-1
+   000311                        ELSE
+   000312      1                     WRITE RPT-OUTPUT
+   000313      1                     BEFORE ADVANCING RC-LINE-SPACE-1
+   000314                        END-IF
+   000315                        ADD 1 TO RC-LINE-COUNT
+   000316                        .
+   000317
+   000318                308-PAGE-PROCESS-2.
+   000319               * MAJOR BREAK JUST OCCURRED PRINTING AVG. STATE PRECIP
+   000320                    IF RC-LINE-COUNT >= 40
+   000321      1                ADD 1 TO RC-PAGE-COUNT
+   000322      1                MOVE ZERO TO RC-LINE-COUNT
+   000323      1                WRITE RPT-OUTPUT
+   000324      1                    BEFORE ADVANCING RC-LINE-SPACE-1
+   000325      1                MOVE HEADING-L2 TO RPT-OUTPUT
+   000326      1                WRITE RPT-OUTPUT
+   000327      1                    BEFORE ADVANCING PAGE
+   000328      1                MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+   000329      1                MOVE HEADING-L3 TO RPT-OUTPUT
+   000330      1                WRITE RPT-OUTPUT
+   000331      1                    BEFORE ADVANCING RC-LINE-SPACE-1
+   000332      1                ADD 3 TO RC-LINE-COUNT
+   000333                    ELSE
+   000334      1                WRITE RPT-OUTPUT
+   000335      1                    BEFORE ADVANCING RC-LINE-SPACE-3
+   000336      1                ADD 3 TO RC-LINE-COUNT
+   000337                    END-IF
+   000338                    .
+   000339
+   000340                309-PAGE-PROCESS-3.
+   000341                    WRITE RPT-OUTPUT
+   000342                        AFTER ADVANCING RC-LINE-SPACE-3
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               WREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000343                    .
+   000344
+   000345                400-DETAIL-LINE-PROCESS.
+   000346                    MOVE SR-CITY TO DRO-CITY
+   000347                    MOVE SR-RAINFALL TO DRO-RAINFALL
+   000348                    MOVE SR-SNOWFALL TO DRO-SNOWFALL
+   000349                    MOVE SR-HAIL TO DRO-HAIL
+   000350                    MOVE SR-SLEET TO DRO-SLEET
+   000351                    PERFORM 401-DETAIL-LINE-AR-PROCESS
+   000352                    .
+   000353               *HELPER FUNCTION
+   000354                401-DETAIL-LINE-AR-PROCESS.
+   000355                    MOVE ZEROS TO AR-CITY-ACUMULATOR
+   000356                    COMPUTE AR-CITY-ACUMULATOR = SR-RAINFALL +
+   000357                              SR-SNOWFALL + SR-SLEET + SR-HAIL
+   000358                    ADD AR-CITY-ACUMULATOR TO AR-COUNTY-ACUMULATOR
+   000359                    ADD 1 TO AR-CITY-COUNTER
+   000360                    MOVE AR-CITY-ACUMULATOR TO DRO-TOTAL
+   000361                    MOVE DETAIL-RPT-OUTPUT TO RPT-OUTPUT
+   000362                    PERFORM 307-PAGE-PROCESS-1
+   000363                    .
+   000364
+   000365                402-PRINT-COUNTY-TOTAL-LINE.
+   000366                    ADD AR-COUNTY-ACUMULATOR TO
+   000367                    AR-TOTAL-PRECIP-ACUMULATOR
+   000368                    MOVE AR-COUNTY-ACUMULATOR TO TL1-COUNTY-TOTAL
+   000369                    MOVE TOTAL-L1 TO RPT-OUTPUT
+   000370                    PERFORM 307-PAGE-PROCESS-1
+   000371                    .
+   000372
+   000373                403-COUNTY-LINE-AVG-PROCESS.
+   000374                    DIVIDE AR-COUNTY-ACUMULATOR BY AR-CITY-COUNTER
+   000375                    GIVING AR-COUNTY-AVG ROUNDED
+   000376                    MOVE AR-COUNTY-AVG TO TL2-COUNTY-AVG
+   000377                    MOVE TOTAL-L2 TO RPT-OUTPUT
+   000378                    PERFORM 308-PAGE-PROCESS-2
+   000379                    .
+   000380
+   000381                404-STATE-LINE-AVG-PROCESS.
+   000382                    DIVIDE AR-STATE-ACCUMULATOR BY AR-COUNTY-COUNTER
+   000383                    GIVING  AR-STATE-AVG ROUNDED
+   000384                    MOVE AR-STATE-AVG TO TL3-STATE-AVG
+   000385                    MOVE TOTAL-L3 TO RPT-OUTPUT
+   000386                    PERFORM 308-PAGE-PROCESS-2
+   000387                    .
+   000388
+   000389                405-TOTAL-PRECIPITATION.
+   000390                    ADD AR-COUNTY-ACUMULATOR TO AR-STATE-ACCUMULATOR
+   000391                    PERFORM 402-PRINT-COUNTY-TOTAL-LINE
+   000392                    PERFORM 403-COUNTY-LINE-AVG-PROCESS
+   000393                    PERFORM 404-STATE-LINE-AVG-PROCESS
+   000394                    MOVE AR-TOTAL-PRECIP-ACUMULATOR TO
+   000395                    TL4-TOTAL-REC-PRECIP
+   000396                    MOVE TOTAL-L4 TO RPT-OUTPUT
+   000397                    PERFORM 309-PAGE-PROCESS-3
+   000398                    .
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               WREPORT   Date 0
+0* Statistics for COBOL program WREPORT:
+ *    Source records = 398
+ *    Data Division statements = 65
+ *    Procedure Division statements = 139
+0End of compilation 1,  program WREPORT,  no statements flagged.
+0Return code 0
+            WEATHER SURVEY REPORT
+                                 04/03/2018
+                                 PAGE: 01
+            STATE: AZ
+ COUNTY: CHOCHISE
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ DOUGLAS                 10        0       10        1     21
+ BENSON                  10       20       10        0     40
+                                       COUNTY TOTAL:           61
+                                       COUNTY AVG PRECIP:      31
+-           STATE AVG PRECIP:   61
+-           STATE: CA
+ COUNTY: ALAMEDA
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ ALAMEDA                  5        2        1        1      9
+                                       COUNTY TOTAL:            9
+                                       COUNTY AVG PRECIP:       9
+-           STATE AVG PRECIP:    9
+-           STATE: FL
+ COUNTY: NOSHINE
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ NOTDISNEYWORLD          34      302       32       34    402
+                                       COUNTY TOTAL:          402
+                                       COUNTY AVG PRECIP:     402
+-COUNTY: SHINE
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ DISNEYWORLD             23       10      321       23    377
+                                       COUNTY TOTAL:          377
+                                       COUNTY AVG PRECIP:     377
+-           STATE AVG PRECIP:  390
+                                 04/03/2018
+1                                PAGE: 02
+            STATE: MA
+ COUNTY: FUN
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ HAWAII                  30       40       50       60    180
+                                       COUNTY TOTAL:          180
+                                       COUNTY AVG PRECIP:     180
+-COUNTY: HUN
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ NOTHAWAII              100      200        0        0    300
+                                       COUNTY TOTAL:          300
+                                       COUNTY AVG PRECIP:     300
+-COUNTY: LEE
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ BECKET                  10        2        1       20     33
+ PITTSFIELD              20       30        0       10     60
+                                       COUNTY TOTAL:           93
+                                       COUNTY AVG PRECIP:      47
+-           STATE AVG PRECIP:  191
+-           STATE: NM
+ COUNTY: BERNALILLO
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ ALBUQUERQUE             10       30        0       10     50
+                                       COUNTY TOTAL:           50
+                                       COUNTY AVG PRECIP:      50
+-           STATE AVG PRECIP:   50
+-           STATE: RI
+                                 04/03/2018
+1                                PAGE: 03
+ COUNTY: MEOW
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ CAT                     30       12       12       31     85
+ BIGCAT                 100       12       14       60    186
+ MAYBELION               23       45       67       54    189
+                                       COUNTY TOTAL:          460
+                                       COUNTY AVG PRECIP:     153
+-COUNTY: MOO
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ COW                     40       10       40       31    121
+ NOTCOW                  20      210        0        0    230
+ REALLYBIGCOW            23       42       23      421    509
+                                       COUNTY TOTAL:          860
+                                       COUNTY AVG PRECIP:     287
+-           STATE AVG PRECIP:  660
+-           STATE: SC
+ COUNTY: GREENSVILLE
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ MAULDIN                 10       10       50       20     90
+ SIMPSONVILLE            50       10       10       30    100
+                                       COUNTY TOTAL:          190
+                                       COUNTY AVG PRECIP:      95
+-COUNTY: HORRY
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ AYNOR                   20        0       40       21     81
+ MYRTLEBEACH             70        0       10       20    100
+ NORTHMYRTLEBEACH        20       30        0       30     80
+ MURRELLSINLET           60       20       10       21    111
+                                       COUNTY TOTAL:          372
+                                       COUNTY AVG PRECIP:      93
+                                 04/03/2018
+1                                PAGE: 04
+ COUNTY: RICHLAND
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ COLUMBIA                20        1        0        1     22
+ FORESTACRES             30        2        1        3     36
+                                       COUNTY TOTAL:           58
+                                       COUNTY AVG PRECIP:      29
+-           STATE AVG PRECIP:  207
+-           STATE: VA
+ COUNTY: NORFOLK
+ CITY                 RAINFALL SNOWFALL  HAIL     SLEET TOTAL
+ CHESAPEAKE              60       40       30       20    150
+ NORFOLK                 70       80       40       20    210
+                                       COUNTY TOTAL:          360
+                                       COUNTY AVG PRECIP:     180
+-           STATE AVG PRECIP:  360
+-
+-TOTAL RECORDED PRECIP: 3772
+

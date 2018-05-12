@@ -1,0 +1,647 @@
+1                    J E S 2  J O B  L O G  --  S Y S T E M  S 0 W 1  --  N O D
+0
+ 18.10.51 JOB01174 ---- MONDAY,    30 APR 2018 ----
+ 18.10.51 JOB01174  IRR010I  USERID KC03CDF  IS ASSIGNED TO THIS JOB.
+ 18.10.51 JOB01174  IEF677I WARNING MESSAGE(S) FOR JOB KC03CDFX ISSUED
+ 18.10.52 JOB01174  ICH70001I KC03CDF  LAST ACCESS AT 17:56:24 ON MONDAY, APRIL
+ 18.10.52 JOB01174  $HASP373 KC03CDFX STARTED - INIT 2    - CLASS A        - SYS
+ 18.10.52 JOB01174  -                                         --TIMINGS (MINS.)-
+ 18.10.52 JOB01174  -JOBNAME  STEPNAME PROCSTEP    RC   EXCP    TCB    SRB  CLOC
+ 18.10.52 JOB01174  -KC03CDFX                      00    460 ******    .00     .
+ 18.10.52 JOB01174  -KC03CDFX                      00    190 ******    .00     .
+ 18.10.53 JOB01174  -KC03CDFX                      00    296 ******    .00     .
+ 18.10.53 JOB01174  -KC03CDFX ENDED.  NAME-COCKLIN              TOTAL TCB CPU TI
+ 18.10.53 JOB01174  $HASP395 KC03CDFX ENDED
+0------ JES2 JOB STATISTICS ------
+-  30 APR 2018 JOB EXECUTION DATE
+-          447 CARDS READ
+-          646 SYSOUT PRINT RECORDS
+-            0 SYSOUT PUNCH RECORDS
+-           33 SYSOUT SPOOL KBYTES
+-         0.01 MINUTES EXECUTION TIME
+         1 //KC03CDFX JOB 1,COCKLIN,LINES=(5,CANCEL),NOTIFY=KC03CDF,
+           // MSGLEVEL=(2,0),MSGCLASS=A
+         2 //STEP2 EXEC PROC=IGYWCLG,LNGPRFX='IGY420',
+           // PARM.COBOL='NOX'
+        26 //SYSIN DD *
+        30 //LKED.SYSPRINT DD DUMMY
+        41 //GO.FILEIN DD DSN=KC02580.G3P5M.DAT,DISP=SHR
+        42 //GO.FILEIN2 DD DSN=KC02580.G3P5T.DAT,DISP=SHR
+        43 //GO.FILEOUT DD SYSOUT=A
+        44 //GO.RPTOUT DD SYSOUT=A
+        45 //GO.ERROUT DD SYSOUT=A
+        46 //GO.SYSOUT DD SYSOUT=A
+  STMT NO. MESSAGE
+         2 IEFC001I PROCEDURE IGYWCLG WAS EXPANDED USING SYSTEM LIBRARY USER.PRO
+        35 IEF686I DDNAME REFERRED TO ON DDNAME KEYWORD IN PRIOR STEP WAS NOT RE
+ ICH70001I KC03CDF  LAST ACCESS AT 17:56:24 ON MONDAY, APRIL 30, 2018
+ IEF142I KC03CDFX COBOL STEP2 - STEP WAS EXECUTED - COND CODE 0000
+ IEF373I STEP/COBOL   /START 2018120.1810
+ IEF032I STEP/COBOL   /STOP  2018120.1810
+         CPU:     0 HR  00 MIN  00.03 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+         VIRT:  8896K  SYS:   308K  EXT:  1576736K  SYS:    13104K
+         ATB- REAL:                    24K  SLOTS:                     0K
+              VIRT- ALLOC:       4M SHRD:       0M
+ IEF142I KC03CDFX LKED STEP2 - STEP WAS EXECUTED - COND CODE 0000
+ IEF373I STEP/LKED    /START 2018120.1810
+ IEF032I STEP/LKED    /STOP  2018120.1810
+         CPU:     0 HR  00 MIN  00.02 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+         VIRT:    88K  SYS:   296K  EXT:     1640K  SYS:    13044K
+         ATB- REAL:                     0K  SLOTS:                     0K
+              VIRT- ALLOC:       0M SHRD:       0M
+ IEF142I KC03CDFX GO STEP2 - STEP WAS EXECUTED - COND CODE 0000
+ IEF373I STEP/GO      /START 2018120.1810
+ IEF032I STEP/GO      /STOP  2018120.1810
+         CPU:     0 HR  00 MIN  00.02 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+         VIRT:   120K  SYS:   384K  EXT:     2980K  SYS:    13112K
+         ATB- REAL:                     0K  SLOTS:                     0K
+              VIRT- ALLOC:       0M SHRD:       0M
+ IEF375I  JOB/KC03CDFX/START 2018120.1810
+ IEF033I  JOB/KC03CDFX/STOP  2018120.1810
+         CPU:     0 HR  00 MIN  00.07 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0                         Date 0
+0Invocation parameters:
+  NOX
+0Options in effect:
+  NOADATA
+    ADV
+    QUOTE
+    ARITH(COMPAT)
+  NOAWO
+  NOBLOCK0
+    BUFSIZE(4096)
+  NOCICS
+    CODEPAGE(1140)
+  NOCOMPILE(S)
+  NOCURRENCY
+    DATA(31)
+  NODATEPROC
+    DBCS
+  NODECK
+  NODIAGTRUNC
+  NODLL
+  NODUMP
+  NODYNAM
+  NOEXIT
+  NOEXPORTALL
+  NOFASTSRT
+    FLAG(I,I)
+  NOFLAGMIG4
+  NOFLAGSTD
+    INTDATE(ANSI)
+    LANGUAGE(EN)
+  NOLIB
+    LINECOUNT(60)
+  NOLIST
+  NOMAP
+  NOMDECK
+  NONAME
+    NSYMBOL(NATIONAL)
+  NONUMBER
+    NUMPROC(NOPFD)
+    OBJECT
+  NOOFFSET
+  NOOPTIMIZE
+    OUTDD(SYSOUT)
+    PGMNAME(COMPAT)
+    RENT
+    RMODE(AUTO)
+    SEQUENCE
+    SIZE(MAX)
+    SOURCE
+    SPACE(1)
+  NOSQL
+    SQLCCSID
+  NOSSRANGE
+  NOTERM
+  NOTEST
+  NOTHREAD
+    TRUNC(STD)
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0                         Date 0
+0 NOVBREF
+  NOWORD
+    XMLPARSE(XMLSS)
+  NOXREF
+    YEARWINDOW(1900)
+    ZWB
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               FREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000001                IDENTIFICATION DIVISION.
+   000002                PROGRAM-ID. FREPORT
+   000003                AUTHOR. JEFFREY COCKLIN, THOMAS COX, ROBERT GUNTER
+   000004                DATE-WRITTEN.  4-19-18
+   000005                DATE-COMPILED. 04/30/18.
+   000006               *CLASS CSCE 205 SECTION 1 PROGRAM 5.
+   000007
+   000008
+   000009                ENVIRONMENT DIVISION.
+   000010                INPUT-OUTPUT SECTION.
+   000011                FILE-CONTROL.
+   000012                    SELECT OLD-MASTER-FILE
+   000013                        ASSIGN TO FILEIN.
+   000014                    SELECT TRANS-FILE
+   000015                        ASSIGN TO FILEIN2.
+   000016                    SELECT NEW-MASTER-FILE
+   000017                        ASSIGN TO FILEOUT.
+   000018                    SELECT TRANS-REPORT
+   000019                        ASSIGN TO RPTOUT.
+   000020                    SELECT ERROR-REPORT
+   000021                        ASSIGN TO ERROUT.
+   000022
+   000023                DATA DIVISION.
+   000024                FILE SECTION.
+   000025                FD  OLD-MASTER-FILE
+   000026                    RECORDING MODE F.
+   000027                01  OLD-MASTER-RECORD                   PIC X(28).
+   000028                FD  TRANS-FILE
+   000029                    RECORDING MODE F.
+   000030                01  TRANS-RECORD                        PIC X(10).
+   000031                FD  NEW-MASTER-FILE
+   000032                    RECORDING MODE F.
+   000033                01  NEW-MASTER-RECORD                   PIC X(28).
+   000034                FD  TRANS-REPORT
+   000035                    RECORDING MODE F.
+   000036                01  REPORT-LINE                         PIC X(290).
+   000037                FD  ERROR-REPORT
+   000038                    RECORDING MODE F.
+   000039                01  ERROR-LINE                          PIC X(234).
+   000040
+   000041                WORKING-STORAGE SECTION.
+   000042                01 PROGRAM-CONTROL-SWITCHES.
+   000043                    05 END-OF-FILE-SWITCH-MASTER   PIC X(1).
+   000044                       88 S1-END-OF-FILE      VALUE 'T'.
+   000045                       88 S1-NOT-END-OF-FILE  VALUE 'F'.
+   000046                    05 END-OF-FILE-SWITCH-TRANS   PIC X(1).
+   000047                       88 S2-END-OF-FILE      VALUE 'T'.
+   000048                       88 S2-NOT-END-OF-FILE  VALUE 'F'.
+   000049
+   000050                01 ARITHMETIC-WORKING-STORAGE.
+   000051                    05 AR-WITHDRAWAL        PIC 9(3).
+   000052                    05 AR-DEPOSIT           PIC 9(3).
+   000053                    05 AR-BALANCE           PIC 9(3).
+   000054                    05 AR-NEW-BALANCE       PIC 9(3).
+   000055
+   000056                01 REPORT-CONTROLS.
+   000057                    05 RC-LINE-SPACE-1      PIC 9(1).
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               FREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000058                    05 RC-LINE-SPACE-2      PIC 9(1).
+   000059                    05 RC-LINE-SPACE-3      PIC 9(1).
+   000060                    05 RC-PAGE-COUNT        PIC 9(2).
+   000061                    05 RC-LINE-COUNT        PIC 9(2).
+   000062
+   000063                01 WORKING-STORAGE-DATE.
+   000064                    05 WS-CDATE              PIC  X(20).
+   000065
+   000066                01 OMR-OLD-MASTER-RECORD.
+   000067                    05 OMR-FIRST-NAME       PIC X(10).
+   000068                    05 OMR-LAST-NAME        PIC X(10).
+   000069                    05 OMR-STUDENT-ID       PIC X(5).
+   000070                    05 OMR-BALANCE          PIC 9(3).
+   000071               * TOTAL 28
+   000072
+   000073                01 TR-TRANS-RECORD.
+   000074                    05 TR-STUDENT-ID        PIC X(5).
+   000075                    05 TR-TRANSACTION-TYPE  PIC X(1).
+   000076                    05 TR-AMOUNT            PIC 9(3).
+   000077                    05 TR-FLAG              PIC X(1).
+   000078               * TOTAL 10
+   000079
+   000080                01 NMR-NEW-MASTER-RECORD.
+   000081                    05 NMR-FIRST-NAME       PIC X(10).
+   000082                    05 NMR-LAST-NAME        PIC X(10).
+   000083                    05 NMR-STUDENT-ID       PIC X(5).
+   000084                    05 NMR-BALANCE          PIC 9(3).
+   000085               * TOTAL 28
+   000086
+   000087                01 RL-REPORT-LINE.
+   000088                    05 RL-FIRST-NAME       PIC X(10).
+   000089                    05 FILLER              PIC X(2) VALUE SPACES.
+   000090                    05 RL-LAST-NAME        PIC X(10).
+   000091                    05 FILLER              PIC X(2) VALUE SPACES.
+   000092                    05 RL-STUDENT-ID       PIC X(5).
+   000093                    05 FILLER              PIC X(6) VALUE SPACES.
+   000094                    05 RL-BALANCE          PIC $$$9.
+   000095                    05 FILLER              PIC X(6) VALUE SPACES.
+   000096                    05 RL-TRANSACTION      PIC X(1).
+   000097                    05 FILLER              PIC X(7) VALUE SPACES.
+   000098                    05 RL-AMOUNT           PIC $$$9.
+   000099               * TOTAL 57
+   000100
+   000101                01 EL-ERROR-LINE.
+   000102                    05 VALUE 'NOT FOUND'   PIC X(9).
+   000103                    05 FILLER              PIC X(4) VALUE SPACES.
+   000104                    05 EL-STUDENT-ID       PIC X(5).
+   000105                    05 FILLER              PIC X(8) VALUE SPACES.
+   000106                    05 EL-TRANSACTION      PIC X(1).
+   000107                    05 FILLER              PIC X(8) VALUE SPACES.
+   000108                    05 EL-AMOUNT           PIC $$$9.
+   000109               * TOTAL 39
+   000110
+   000111                01 HEADING-L1.
+   000112                    05 FILLER PIC X(14) VALUE SPACES.
+   000113                    05 VALUE 'MASTER/TRANSACTION MATCH REPORT'
+   000114                                           PIC X(31).
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               FREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000115               * TOTAL 45
+   000116
+   000117                01 HEADING-L2.
+   000118                    05 FILLER             PIC X(57) VALUE SPACES.
+   000119                    05 HL2-MONTH          PIC 9(2).
+   000120                    05 HL2-SPEARATOR1     PIC X(1) VALUE '/'.
+   000121                    05 HL2-DAY            PIC 9(2).
+   000122                    05 HL2-SPEARATOR2     PIC X(1) VALUE '/'.
+   000123                    05 HL2-YEAR           PIC 9(4).
+   000124               * TOTAL 67
+   000125
+   000126                01 HEADING-L3.
+   000127                    05 FILLER             PIC X(57) VALUE SPACES.
+   000128                    05 PIC X(6) VALUE 'PAGE: '.
+   000129                    05 HL3-PAGE-NUM       PIC 9(2).
+   000130               * TOTAL 65
+   000131
+   000132                01 HEADING-L4.
+   000133                    05 VALUE 'FIRST NAME' PIC X(10).
+   000134                    05 FILLER             PIC X(1) VALUE SPACES.
+   000135                    05 VALUE 'LAST NAME'  PIC X(9).
+   000136                    05 FILLER             PIC X(1) VALUE SPACES.
+   000137                    05 VALUE 'STUDENT ID' PIC X(10).
+   000138                    05 FILLER             PIC X(1) VALUE SPACES.
+   000139                    05 VALUE 'BALANCE'    PIC X(7).
+   000140                    05 FILLER             PIC X(1) VALUE SPACES.
+   000141                    05 VALUE 'TRANSACTION' PIC X(11).
+   000142                    05 FILLER             PIC X(1) VALUE SPACES.
+   000143                    05 VALUE 'AMOUNT'     PIC X(6).
+   000144               * TOTAL 58 FOR TRANS-REPORT
+   000145
+   000146                01 HEADING-L5.
+   000147                    05 FILLER PIC X(11) VALUE SPACES.
+   000148                    05 VALUE 'ERROR REPORT' PIC X(12).
+   000149               * TOTAL 23
+   000150
+   000151                01 HEADING-L6.
+   000152                    05 VALUE 'ERROR-TYPE' PIC X(10).
+   000153                    05 FILLER             PIC X(1) VALUE SPACES.
+   000154                    05 VALUE 'STUDENT ID' PIC X(10).
+   000155                    05 FILLER             PIC X(1) VALUE SPACES.
+   000156                    05 VALUE 'TRANSACTION' PIC X(11).
+   000157                    05 FILLER             PIC X(1) VALUE SPACES.
+   000158                    05 VALUE 'AMOUNT'     PIC X(6).
+   000159               * TOTAL 40 FOR ERROR REPORT
+   000160
+   000161                PROCEDURE DIVISION.
+   000162                100-MAIN.
+   000163                    OPEN INPUT OLD-MASTER-FILE
+   000164                               TRANS-FILE
+   000165
+   000166                         OUTPUT NEW-MASTER-FILE
+   000167                                TRANS-REPORT
+   000168                                ERROR-REPORT
+   000169
+   000170                    PERFORM 101-INIT
+   000171                    PERFORM 200-DRIVER
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               FREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000172
+   000173                    CLOSE OLD-MASTER-FILE
+   000174                          TRANS-FILE
+   000175                          NEW-MASTER-FILE
+   000176                          TRANS-REPORT
+   000177                          ERROR-REPORT
+   000178                    STOP RUN
+   000179                    .
+   000180
+   000181                101-INIT.
+   000182                    MOVE FUNCTION CURRENT-DATE TO WS-CDATE
+   000183                    MOVE WS-CDATE(5:2) TO HL2-MONTH
+   000184                    MOVE WS-CDATE(7:2) TO HL2-DAY
+   000185                    MOVE WS-CDATE(1:4) TO HL2-YEAR
+   000186
+   000187                    SET S1-NOT-END-OF-FILE TO TRUE
+   000188                    SET S2-NOT-END-OF-FILE TO TRUE
+   000189                    MOVE 1 TO RC-LINE-SPACE-1
+   000190                    MOVE 2 TO RC-LINE-SPACE-2
+   000191                    MOVE 3 TO RC-LINE-SPACE-3
+   000192
+   000193                    ADD 1 TO RC-PAGE-COUNT
+   000194                    MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+   000195
+   000196                    INITIALIZE ARITHMETIC-WORKING-STORAGE
+   000197                               RC-LINE-COUNT
+   000198                    .
+   000199
+   000200               *100 LEVEL FILE READING PROCESSES.
+   000201
+   000202               * MAIN READING PROCESS.
+   000203                102-READING-FILES.
+   000204                    PERFORM 103-READ-OLD-MASTER-FILE
+   000205                    PERFORM 104-READ-TRANS-FILE
+   000206
+   000207                    PERFORM UNTIL S1-END-OF-FILE AND S2-END-OF-FILE
+   000208
+   000209      1                 EVALUATE S1-END-OF-FILE ALSO S2-END-OF-FILE
+   000210
+   000211               *   BOTH MASTER-FILE AND TRANS-FILE STILL BEING READ.
+   000212      1                     WHEN FALSE ALSO FALSE
+   000213      2                         PERFORM 201-MATCHING-PROCESS
+   000214
+   000215               *   MASTER-FILE STILL BEING READ, BUT TRANS-FILE
+   000216               *   IS FINISHED.
+   000217      1                     WHEN FALSE ALSO TRUE
+   000218      2                         PERFORM UNTIL S1-END-OF-FILE
+   000219      3                              PERFORM 103-READ-OLD-MASTER-FILE
+   000220      3                              PERFORM
+   000221      3                              401-WRITE-TO-NEW-MASTER-FILE-1
+   000222      2                         END-PERFORM
+   000223
+   000224               *      MASTER-FILE IS FINISHED, BUT TRANS-FILE IS
+   000225               *      STILL BEING READ
+   000226      1                     WHEN TRUE ALSO FALSE
+   000227      2                         PERFORM UNTIL S2-END-OF-FILE
+   000228      3                             PERFORM 405-WRITE-TO-ERROR-REPORT
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               FREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000229      3                             PERFORM 104-READ-TRANS-FILE
+   000230      2                         END-PERFORM
+   000231      1                 END-EVALUATE
+   000232                    END-PERFORM
+   000233                    .
+   000234
+   000235
+   000236
+   000237               * MASTER FILE READING PROCESS.
+   000238                103-READ-OLD-MASTER-FILE.
+   000239                    READ OLD-MASTER-FILE
+   000240                         INTO OMR-OLD-MASTER-RECORD
+   000241                    AT END
+   000242      1                  SET S1-END-OF-FILE TO TRUE
+   000243                    END-READ
+   000244                    .
+   000245
+   000246               * TRANSACTION FILE READING PROCESS.
+   000247                104-READ-TRANS-FILE.
+   000248                    READ TRANS-FILE
+   000249                         INTO TR-TRANS-RECORD
+   000250                    AT END
+   000251      1                  SET S2-END-OF-FILE TO TRUE
+   000252                    END-READ
+   000253                    .
+   000254               * PRIMARY DRIVER FOR THE PROGRAM
+   000255                200-DRIVER.
+   000256                    PERFORM 302-PRINT-REPORT-HEADINGS
+   000257                    PERFORM 303-PRINT-ERROR-REPORT-HEADING
+   000258                    PERFORM 102-READING-FILES
+   000259                    .
+   000260
+   000261               * PERFORMS MATCHING PROCESS
+   000262                201-MATCHING-PROCESS.
+   000263                    EVALUATE TRUE
+   000264               * NO MORE MATCHES FOUND
+   000265                        WHEN TR-STUDENT-ID > OMR-STUDENT-ID
+   000266      1                     PERFORM 400-CALC-NEW-BALANCE
+   000267      1                     PERFORM 402-WRITE-TO-NEW-MASTER-FILE-2
+   000268      1                     IF S1-NOT-END-OF-FILE
+   000269      2                        PERFORM 103-READ-OLD-MASTER-FILE
+   000270      1                     END-IF
+   000271
+   000272               * IN CASE OF OUT OF ORDER UNMATCHED
+   000273               * ( THIS CONDITION DOESN'T OCCUR IN OUR TRANS FILE)
+   000274                        WHEN TR-STUDENT-ID < OMR-STUDENT-ID
+   000275      1                     PERFORM 405-WRITE-TO-ERROR-REPORT
+   000276      1                     IF S1-NOT-END-OF-FILE AND S2-NOT-END-OF-FIL
+   000277      2                        PERFORM 104-READ-TRANS-FILE
+   000278      1                     END-IF
+   000279
+   000280               * NORMAL MATCH FOUND CONDITION.
+   000281                        WHEN TR-STUDENT-ID = OMR-STUDENT-ID
+   000282      1                     IF TR-TRANSACTION-TYPE EQUAL 'D'
+   000283      2                         ADD TR-AMOUNT TO AR-DEPOSIT
+   000284      1                     ELSE
+   000285      2                         ADD TR-AMOUNT TO AR-WITHDRAWAL
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               FREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000286      1                     END-IF
+   000287      1                     PERFORM 404-WRITE-TO-TRANS-REPORT
+   000288      1                     IF S2-NOT-END-OF-FILE
+   000289      2                        PERFORM 104-READ-TRANS-FILE
+   000290      1                     END-IF
+   000291                    END-EVALUATE
+   000292                     .
+   000293
+   000294
+   000295               *300 LEVEL PAGE/LINE SPACE HANDLING.
+   000296
+   000297               *300 PAGE HANDLING FOR TRANS-REPORT
+   000298                300-PAGE-PROCESS-1.
+   000299                    IF RC-LINE-COUNT >= 50
+   000300      1                ADD 1 TO RC-PAGE-COUNT
+   000301      1                MOVE ZERO TO RC-LINE-COUNT
+   000302      1                WRITE REPORT-LINE
+   000303      1                     BEFORE ADVANCING RC-LINE-SPACE-1
+   000304      1                MOVE HEADING-L2 TO REPORT-LINE
+   000305      1                WRITE REPORT-LINE
+   000306      1                     BEFORE ADVANCING PAGE
+   000307      1                ADD 3 TO RC-LINE-COUNT
+   000308      1                MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+   000309      1                MOVE HEADING-L3 TO REPORT-LINE
+   000310      1                WRITE REPORT-LINE
+   000311      1                     BEFORE ADVANCING RC-LINE-SPACE-1
+   000312      1                MOVE HEADING-L4 TO REPORT-LINE
+   000313      1                WRITE REPORT-LINE
+   000314      1                     BEFORE ADVANCING RC-LINE-SPACE-1
+   000315                    ELSE
+   000316      1                WRITE REPORT-LINE
+   000317      1                     BEFORE ADVANCING RC-LINE-SPACE-1
+   000318                    END-IF
+   000319                    ADD 1 TO RC-LINE-COUNT
+   000320                    .
+   000321
+   000322               *301 PAGE HANDLING FOR ERROR REPORT EL-ERROR-LINE*
+   000323                301-PAGE-PROCESS-2.
+   000324                    IF RC-LINE-COUNT >= 50
+   000325      1                ADD 1 TO RC-PAGE-COUNT
+   000326      1                MOVE ZERO TO RC-LINE-COUNT
+   000327      1                WRITE ERROR-LINE
+   000328      1                     BEFORE ADVANCING RC-LINE-SPACE-1
+   000329      1                MOVE HEADING-L2 TO ERROR-LINE
+   000330      1                WRITE ERROR-LINE
+   000331      1                     BEFORE ADVANCING PAGE
+   000332      1                ADD 3 TO RC-LINE-COUNT
+   000333      1                MOVE RC-PAGE-COUNT TO HL3-PAGE-NUM
+   000334      1                MOVE HEADING-L3 TO ERROR-LINE
+   000335      1                WRITE ERROR-LINE
+   000336      1                     BEFORE ADVANCING RC-LINE-SPACE-1
+   000337      1                MOVE HEADING-L6 TO ERROR-LINE
+   000338      1                WRITE ERROR-LINE
+   000339      1                     BEFORE ADVANCING RC-LINE-SPACE-1
+   000340                    ELSE
+   000341      1                WRITE ERROR-LINE
+   000342      1                     BEFORE ADVANCING RC-LINE-SPACE-1
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               FREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000343                    END-IF
+   000344                    ADD 1 TO RC-LINE-COUNT
+   000345                    .
+   000346
+   000347
+   000348               *300-LEVEL REPORT HEADINGS
+   000349
+   000350               * TRANSACTION REPORT HEADINGS AND FIELDS.
+   000351                302-PRINT-REPORT-HEADINGS.
+   000352                    MOVE HEADING-L1 TO REPORT-LINE
+   000353                    PERFORM 300-PAGE-PROCESS-1
+   000354                    MOVE HEADING-L2 TO REPORT-LINE
+   000355                    PERFORM 300-PAGE-PROCESS-1
+   000356                    MOVE HEADING-L3 TO REPORT-LINE
+   000357                    PERFORM 300-PAGE-PROCESS-1
+   000358                    MOVE HEADING-L4 TO REPORT-LINE
+   000359                    PERFORM 300-PAGE-PROCESS-1
+   000360                    .
+   000361
+   000362
+   000363               * ERROR REPORT HANDLINGS AND FIELDS.
+   000364                303-PRINT-ERROR-REPORT-HEADING.
+   000365                    MOVE HEADING-L5 TO ERROR-LINE
+   000366                    PERFORM 301-PAGE-PROCESS-2
+   000367                    MOVE HEADING-L2 TO ERROR-LINE
+   000368                    PERFORM 301-PAGE-PROCESS-2
+   000369                    MOVE HEADING-L3 TO ERROR-LINE
+   000370                    PERFORM 301-PAGE-PROCESS-2
+   000371                    MOVE HEADING-L6 TO ERROR-LINE
+   000372                    PERFORM 301-PAGE-PROCESS-2
+   000373                    .
+   000374
+   000375
+   000376               * CALCULATE THE NEW BALANCE.
+   000377                400-CALC-NEW-BALANCE.
+   000378                    MOVE OMR-BALANCE TO AR-BALANCE
+   000379                    COMPUTE AR-NEW-BALANCE = AR-BALANCE + AR-DEPOSIT
+   000380                    - AR-WITHDRAWAL
+   000381                    MOVE ZEROES TO AR-BALANCE AR-WITHDRAWAL AR-DEPOSIT
+   000382                    .
+   000383
+   000384
+   000385               * MOVE THE OLD-MASTER-FILE TO NEW-MASTER-FILE WITH
+   000386               * NO CHANGES
+   000387                401-WRITE-TO-NEW-MASTER-FILE-1.
+   000388                    MOVE OMR-OLD-MASTER-RECORD TO
+   000389                         NMR-NEW-MASTER-RECORD
+   000390                    MOVE NMR-NEW-MASTER-RECORD TO NEW-MASTER-RECORD
+   000391                    WRITE NEW-MASTER-RECORD
+   000392                         BEFORE ADVANCING RC-LINE-SPACE-1
+   000393                    .
+   000394
+   000395
+   000396               * MOVE THE OLD-MASTER-FILE TO NEW-MASTER-FILE,
+   000397               * BUT UPDATE THE BALANCE.
+   000398                402-WRITE-TO-NEW-MASTER-FILE-2.
+   000399                    MOVE OMR-OLD-MASTER-RECORD TO NMR-NEW-MASTER-RECORD
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               FREPORT   Date 0
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6--
+0  000400                    MOVE AR-NEW-BALANCE TO NMR-BALANCE
+   000401                    MOVE NMR-NEW-MASTER-RECORD TO NEW-MASTER-RECORD
+   000402                    WRITE NEW-MASTER-RECORD
+   000403                         BEFORE ADVANCING RC-LINE-SPACE-1
+   000404                    .
+   000405
+   000406
+   000407               *400-LEVEL PROCESS TO MOVE DATA TO RL-REPORT-LINE
+   000408               *FOR TRANS-REPORT
+   000409                404-WRITE-TO-TRANS-REPORT.
+   000410                    MOVE OMR-FIRST-NAME TO RL-FIRST-NAME
+   000411                    MOVE OMR-LAST-NAME TO RL-LAST-NAME
+   000412                    MOVE OMR-STUDENT-ID TO RL-STUDENT-ID
+   000413                    MOVE OMR-BALANCE TO RL-BALANCE
+   000414                    MOVE TR-TRANSACTION-TYPE TO RL-TRANSACTION
+   000415                    MOVE TR-AMOUNT TO RL-AMOUNT
+   000416                    MOVE RL-REPORT-LINE TO REPORT-LINE
+   000417                    PERFORM 300-PAGE-PROCESS-1
+   000418                    .
+   000419
+   000420
+   000421               *400-LEVEL PROCESS TO MOVE DATA TO EL-ERROR-LINE
+   000422               *ERROR-REPORT
+   000423                405-WRITE-TO-ERROR-REPORT.
+   000424                    MOVE TR-STUDENT-ID TO EL-STUDENT-ID
+   000425                    MOVE TR-TRANSACTION-TYPE TO EL-TRANSACTION
+   000426                    MOVE TR-AMOUNT TO EL-AMOUNT
+   000427                    MOVE EL-ERROR-LINE TO ERROR-LINE
+   000428                    PERFORM 301-PAGE-PROCESS-2
+   000429                    .
+   000430
+   000431
+   000432
+-* Statistics for COBOL program FREPORT:
+ *    Source records = 432
+ *    Data Division statements = 63
+ *    Procedure Division statements = 116
+0End of compilation 1,  program FREPORT,  no statements flagged.
+0Return code 0
+ JAKE      ROLLIN    00001400
+ PAUL      RYAN      00002010
+ MARY      LITTLE    00003100
+ LUKE      CARRY     00004050
+ JOE       SMITH     00005100
+ MIKE      JONES     00006115
+ JEFFREY   STONE     00007400
+ LOUIS     RENOLDS   00008010
+ SARIA     JONES     00009095
+ MARK      WEN       00010300
+ JESSICA   ANDERSON  00011290
+ JULIA     PARKER    00012200
+ JAKE      ROLLAND   00013370
+ MARTIN    JOHNSON   00014410
+ MARTY     SMITH     00015270
+ TOM       FRASER    00016500
+ MARY      COX       00017300
+ JOSE      JAKES     00018240
+ BART      MIKES     00019100
+ MARKY     MARK      00020660
+ JOHN      PAUL      00021400
+ JON       DOE       00022200
+ RON       COX       00023600
+ ANDREA    SAXMAN    00024200
+ RONALD    HUGH      00025350
+               MASTER/TRANSACTION MATCH REPORT
+                                                          04/30/2018
+                                                          PAGE: 01
+ FIRST NAME LAST NAME STUDENT ID BALANCE TRANSACTION AMOUNT
+ JAKE        ROLLIN      00001      $300      D       $200
+ JAKE        ROLLIN      00001      $300      W       $100
+ PAUL        RYAN        00002      $100      D         $6
+ PAUL        RYAN        00002      $100      W        $96
+ MARY        LITTLE      00003       $60      D        $40
+ LUKE        CARRY       00004      $100      W        $50
+ JOE         SMITH       00005      $110      W        $10
+ MIKE        JONES       00006      $100      D        $35
+ MIKE        JONES       00006      $100      W        $20
+ JEFFREY     STONE       00007      $300      D       $100
+ LOUIS       RENOLDS     00008       $20      W        $10
+ SARIA       JONES       00009       $50      D        $50
+ SARIA       JONES       00009       $50      W         $5
+ MARK        WEN         00010        $0      D       $300
+ JESSICA     ANDERSON    00011      $210      D        $90
+ JESSICA     ANDERSON    00011      $210      W        $10
+ JULIA       PARKER      00012      $250      W        $50
+ JAKE        ROLLAND     00013      $350      D        $20
+ MARTIN      JOHNSON     00014      $400      D        $40
+ MARTIN      JOHNSON     00014      $400      W        $30
+ MARTY       SMITH       00015      $500      W       $230
+ TOM         FRASER      00016      $350      D       $150
+ MARY        COX         00017      $420      W       $120
+ JOSE        JAKES       00018      $120      D       $120
+ BART        MIKES       00019      $150      W        $50
+ MARKY       MARK        00020      $700      W        $40
+ JOHN        PAUL        00021      $300      D       $100
+ JON         DOE         00022      $500      W       $300
+ RON         COX         00023      $400      D       $200
+ ANDREA      SAXMAN      00024      $300      W       $100
+ RONALD      HUGH        00025      $200      D       $150
+            ERROR REPORT
+                                                          04/30/2018
+                                                          PAGE: 01
+ ERROR-TYPE STUDENT ID TRANSACTION AMOUNT
+ NOT FOUND    88888        W        $100
+ NOT FOUND    99999        W         $10
+
